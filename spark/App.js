@@ -8,42 +8,86 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import MapView from 'react-native-maps';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      markers: [{
+        title: 'Painting Workshop',
+        key: 1,
+        coordinates: {
+          latitude: 37.425054,
+          longitude:  -122.161875
+        },
+      },
+      {
+        title: 'Botanical Art Workshop',
+        key: 2,
+        coordinates: {
+          latitude: 37.435866,
+          longitude: -122.171112
+        },
+      }]
+    }
+  };
+
+  render() {
+    return (
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 37.427398,
+          longitude:  -122.169622,
+          latitudeDelta: 0.0922/1.5,
+          longitudeDelta: 0.0421/1.5,
+        }}
+      >
+      {this.state.markers.map(marker => (
+        <MapView.Marker
+          coordinate={marker.coordinates}
+          title={marker.title}
+          image={require('./assets/PinOrange.png')}
+          key={marker.key}
+        />
+      ))}
+      </MapView>
+    );
+  }
+}
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Testing!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View style={styles.mapcontainer}>
+        <View style={styles.banner} />
+        <Map />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+  mapcontainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  map: {
+    position: 'absolute',
+    top: 75,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  banner: {
+    backgroundColor: '#2AACAD',
+    height: 75,
   },
 });
