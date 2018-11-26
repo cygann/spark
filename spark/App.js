@@ -7,8 +7,9 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import MapView from 'react-native-maps';
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
 class Map extends Component {
   constructor(props) {
@@ -57,26 +58,100 @@ class Map extends Component {
   }
 }
 
-type Props = {};
-export default class App extends Component<Props> {
+//Event page that shows event details
+class EventPage extends Component {
+    render(){
+      return (
+        <ScrollView>
+          <View style={styles.banner} />
+          <View style={styles.MapPreviewBox}>
+            <Map />
+          </View>
+          <View style={styles.EventTitleBox}>
+            <Text style={styles.EventTitle}>Painting Workshop</Text>
+          </View>
+          <View style={{top: 25}, styles.UserProfileBox}>
+            <Image source={require('./assets/zack.jpeg')} style={styles.UserProfileImage} />
+            <View style={{left: 15}}>
+              <Text style={styles.BodyTextGray}>Hosted By</Text>
+              <Text style={styles.NameText}>Zack Cinquini</Text>
+            </View>
+          </View>
+          <View style={styles.EventDateTime}>
+            <View>
+              <Text style={styles.BodyText}>217 Coastal St.</Text>
+              <Text style={styles.BodyText}>Dana Point, CA</Text>
+            </View>
+            <View style={{left: 30}}>
+              <Text style={styles.BodyText}>Tuesday, November 6th</Text>
+              <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
+            </View>
+          </View>
+        </ScrollView>
+
+      );
+    }
+}
+
+/*class UserProfile extends Component {
   render() {
     return (
-<<<<<<< HEAD
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Quick edits!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-=======
+
+    );
+  }
+}*/
+
+//Main home page that displays the map. Inside of this screen is an instance of the Map class.
+type Props = {};
+class Homescreen extends Component<Props> {
+  render() {
+    return (
       <View style={styles.mapcontainer}>
         <View style={styles.banner} />
+        
         <Map />
->>>>>>> a2c591bc13606e3e4dbcf575473a95d490c9f7bc
       </View>
     );
   }
 }
 
+
+//App Navigator to move between screens
+const AppNavigator = createStackNavigator({
+    Event: {screen: EventPage},
+    Home: {screen: Homescreen},
+});
+
+export default createAppContainer(AppNavigator);
+
+
+//Style elements
 const styles = StyleSheet.create({
+  //Font and text styles:
+  EventTitleBox: {
+      left: 15,
+  },
+  EventTitle: {
+    fontFamily: 'Roboto',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  BodyText: {
+    fontFamily: 'Roboto',
+    fontSize: 14,
+  },
+  BodyTextGray: {
+    fontFamily: 'Roboto',
+    fontSize: 14,
+    //color: #8D8D8D, //light gray
+  },
+  NameText: {
+    fontFamily: 'Roboto',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
+  //Map Styles  
   mapcontainer: {
     position: 'absolute',
     top: 0,
@@ -93,8 +168,32 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
+ 
+  //General Styles
   banner: {
     backgroundColor: '#2AACAD',
     height: 75,
   },
+  MapPreviewBox: {
+    height: 150,
+  },
+  UserProfileImage: {
+      height: 50,
+      borderRadius: 25,
+      width: 50
+  },
+  UserProfileBox: {
+    flexDirection: 'row',
+    left: 15,
+    top: 15,
+  },
+  EventDateTime: {
+    left: 15,
+    top: 30,
+    flexDirection: 'row',
+  },
+  EventAttendeesBox: {
+    left: 15,
+    flexDirection: 'row',
+  }
 });

@@ -9,7 +9,9 @@
   "dependencies": {
     "react": "16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
-    "react-native-maps": "^0.22.1"
+    "react-native-gesture-handler": "^1.0.9",
+    "react-native-maps": "^0.22.1",
+    "react-navigation": "^3.0.0"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
@@ -19,5 +21,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+          "assets": [
+                "./assets/fonts/"
+                    ]
   }
 }
