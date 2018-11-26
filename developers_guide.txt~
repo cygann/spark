@@ -6,4 +6,6 @@ To edit:
     npm install -g react-native-cli
 3. To run the iphone simulator, make sure you have XCode installed, cd into the spark folder, and then run:
     react-native run-ios
-4. Edit the app with the App.
+4. Edit the app with the App.json file in your favorite text editor
+5. To update the simulator with your edits, use cmd + r
+

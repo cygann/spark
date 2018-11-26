@@ -9,3 +9,12 @@ To edit:
 4. Edit the app with the App.json file in your favorite text editor
 5. To update the simulator with your edits, use cmd + r
 
+
+React Navigation set up instructions (do this in spark/spark folder, the react-native project):
+install react-navigation with:
+    npm install --save react-navigation
+install react-native-gesture-handler with:
+    npm install --save react-native-gesture-handler
+Then link all dependencies:
+    react-native link
+
