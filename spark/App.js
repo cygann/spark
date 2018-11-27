@@ -79,13 +79,19 @@ class EventPage extends Component {
           </View>
           <View style={styles.EventDateTime}>
             <View>
-              <Text style={styles.BodyText}>217 Coastal St.</Text>
-              <Text style={styles.BodyText}>Dana Point, CA</Text>
+              <View>
+                <Text style={styles.BodyText}>217 Coastal St.</Text>
+                <Text style={styles.BodyText}>Dana Point, CA</Text>
+              </View>
+              <View style={{top: 15}}>
+                <Text style={styles.BodyText}>Tuesday, November 6th</Text>
+                <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
+              </View>
             </View>
             <View style={{left: 30}}>
-              <Text style={styles.BodyText}>Tuesday, November 6th</Text>
-              <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
+                <Text style={styles.BodyText}>8/16 Spots Filled</Text>
             </View>
+                
           </View>
         </ScrollView>
 
