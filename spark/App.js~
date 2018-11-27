@@ -10,29 +10,34 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import MapView from 'react-native-maps';
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStore } from "redux";
+
+const store = createStore(
+  (state = {events: [], users: []}, action) => {
+    switch (action.type) {
+      case 'ADD_EVENT':
+        action.event.key = Math.random();
+        action.event.host = state.users.find((user) => user.key === action.event.hostKey);
+        return {
+          events: [...state.events, action.event],
+          users: state.users,
+        }
+      case 'ADD_USER':
+        action.user.key = Math.random();
+        return {
+          events: state.events,
+          users: [...state.users, action.user],
+        }
+      default:
+        return state;
+    }
+  }
+);
 
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      markers: [{
-        title: 'Painting Workshop',
-        key: 1,
-        coordinates: {
-          latitude: 37.425054,
-          longitude:  -122.161875
-        },
-      },
-      {
-        title: 'Botanical Art Workshop',
-        key: 2,
-        coordinates: {
-          latitude: 37.435866,
-          longitude: -122.171112
-        },
-      }]
-    }
-  };
+  }
 
   render() {
     return (
@@ -45,12 +50,15 @@ class Map extends Component {
           longitudeDelta: 0.0421/1.5,
         }}
       >
-      {this.state.markers.map(marker => (
+      {store.getState().events.map(event => (
         <MapView.Marker
-          coordinate={marker.coordinates}
-          title={marker.title}
+          coordinate={event.coordinates}
+          title={event.title}
           image={require('./assets/PinOrange.png')}
-          key={marker.key}
+          key={event.key}
+          onPress={() => {
+            this.props.nav.navigate('Event', {event: event})}
+          }
         />
       ))}
       </MapView>
@@ -60,6 +68,7 @@ class Map extends Component {
 
 //Event page that shows event details
 class EventPage extends Component {
+<<<<<<< HEAD
     render(){
       return (
         <ScrollView>
@@ -94,28 +103,91 @@ class EventPage extends Component {
                 
           </View>
         </ScrollView>
+=======
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: navigation.getParam('event', {title: 'Event Page'}).title,
+    };
+  }
+>>>>>>> 4d2af75a2befbcea2812490d8b1053f94ecf6304
 
-      );
-    }
-}
+  render(){
+    const nav = this.props.navigation;
+    const event = nav.getParam('event', {});
 
-/*class UserProfile extends Component {
-  render() {
     return (
+      <ScrollView>
+        <View style={styles.MapPreviewBox}>
+          <Map />
+        </View>
+        <View style={styles.EventTitleBox}>
+          <Text style={styles.EventTitle}>{event.title}</Text>
+        </View>
+        <View style={{top: 25}, styles.UserProfileBox}>
+          <Image source={event.host.icon} style={styles.UserProfileImage} />
+          <View style={{left: 15}}>
+            <Text style={styles.BodyTextGray}>Hosted By</Text>
+            <Text style={styles.NameText}>{event.host.name}</Text>
+          </View>
+        </View>
+        <View style={styles.EventDateTime}>
+          <View>
+            <Text style={styles.BodyText}>{event.addr1}</Text>
+            <Text style={styles.BodyText}>{event.addr2}</Text>
+          </View>
+          <View style={{left: 30}}>
+            <Text style={styles.BodyText}>{event.date}</Text>
+            <Text style={styles.BodyText}>{event.time}</Text>
+          </View>
+        </View>
+      </ScrollView>
 
     );
   }
-}*/
+}
 
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
 type Props = {};
 class Homescreen extends Component<Props> {
+  static navigationOptions = {
+    title: 'spark',
+  }
   render() {
+    {/*Set up default users*/}
+    store.dispatch({ type: 'ADD_USER', user: {
+      name: 'Zack Cinquini',
+      icon: require('./assets/zack.jpeg'),
+    }});
+
+    {/*Set up default events*/}
+    const zackKey = store.getState().users[0].key;
+    store.dispatch({ type: 'ADD_EVENT', event: {
+      title: 'Painting Workshop',
+      hostKey: zackKey,
+      addr1: 'Arizona Garden',
+      addr2: 'Stanford, CA 94305',
+      date: 'Sunday, December 9th',
+      time: '2:00pm - 4:00pm',
+      coordinates: {
+        latitude: 37.425054,
+        longitude:  -122.161875
+      },
+    }});
+    store.dispatch({ type: 'ADD_EVENT', event: {
+      title: 'Botanical Art Workshop',
+      hostKey: zackKey,
+      addr1: '673 Escondido Rd',
+      addr2: 'Stanford, CA 94305',
+      date: 'Saturday, December 8th',
+      time: '6:30pm - 8:30pm',
+      coordinates: {
+        latitude: 37.435866,
+        longitude: -122.171112
+      },
+    }});
     return (
       <View style={styles.mapcontainer}>
-        <View style={styles.banner} />
-        
-        <Map />
+        <Map nav={this.props.navigation}/>
       </View>
     );
   }
@@ -123,13 +195,34 @@ class Homescreen extends Component<Props> {
 
 
 //App Navigator to move between screens
-const AppNavigator = createStackNavigator({
-    Event: {screen: EventPage},
+const AppNavigator = createStackNavigator(
+  {
     Home: {screen: Homescreen},
-});
+    Event: {screen: EventPage},
+  },
+  {
+    initialRouteName: "Home",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#2AACAD'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontFamily: 'Roboto',
+        fontSize: 18,
+        fontWeight: 'bold',
+      }
+    }
+  }
+);
 
-export default createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppNavigator);
 
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
 
 //Style elements
 const styles = StyleSheet.create({
@@ -157,7 +250,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  //Map Styles  
+  //Map Styles
   mapcontainer: {
     position: 'absolute',
     top: 0,
@@ -169,17 +262,13 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top: 75,
+    top: 0,
     left: 0,
     right: 0,
     bottom: 0,
   },
- 
+
   //General Styles
-  banner: {
-    backgroundColor: '#2AACAD',
-    height: 75,
-  },
   MapPreviewBox: {
     height: 150,
   },
