@@ -51,6 +51,9 @@ class Map extends Component {
           title={marker.title}
           image={require('./assets/PinOrange.png')}
           key={marker.key}
+          onPress={() => {
+            this.props.nav.navigate('Event', {eventKey: marker.key})}
+          }
         />
       ))}
       </MapView>
@@ -61,6 +64,9 @@ class Map extends Component {
 //Event page that shows event details
 class EventPage extends Component {
     render(){
+      const nav = this.props.navigation;
+      const eventKey = nav.getParam('eventKey', 0);
+
       return (
         <ScrollView>
           <View style={styles.banner} />
@@ -108,8 +114,8 @@ class Homescreen extends Component<Props> {
     return (
       <View style={styles.mapcontainer}>
         <View style={styles.banner} />
-        
-        <Map />
+
+        <Map nav={this.props.navigation}/>
       </View>
     );
   }
@@ -117,13 +123,23 @@ class Homescreen extends Component<Props> {
 
 
 //App Navigator to move between screens
-const AppNavigator = createStackNavigator({
-    Event: {screen: EventPage},
+const AppNavigator = createStackNavigator(
+  {
     Home: {screen: Homescreen},
-});
+    Event: {screen: EventPage},
+  },
+  {
+    initialRouteName: "Home"
+  }
+);
 
-export default createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppNavigator);
 
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
 
 //Style elements
 const styles = StyleSheet.create({
@@ -151,7 +167,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
-  //Map Styles  
+  //Map Styles
   mapcontainer: {
     position: 'absolute',
     top: 0,
@@ -168,7 +184,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
- 
+
   //General Styles
   banner: {
     backgroundColor: '#2AACAD',
