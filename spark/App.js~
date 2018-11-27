@@ -68,48 +68,11 @@ class Map extends Component {
 
 //Event page that shows event details
 class EventPage extends Component {
-<<<<<<< HEAD
-    render(){
-      return (
-        <ScrollView>
-          <View style={styles.banner} />
-          <View style={styles.MapPreviewBox}>
-            <Map />
-          </View>
-          <View style={styles.EventTitleBox}>
-            <Text style={styles.EventTitle}>Painting Workshop</Text>
-          </View>
-          <View style={{top: 25}, styles.UserProfileBox}>
-            <Image source={require('./assets/zack.jpeg')} style={styles.UserProfileImage} />
-            <View style={{left: 15}}>
-              <Text style={styles.BodyTextGray}>Hosted By</Text>
-              <Text style={styles.NameText}>Zack Cinquini</Text>
-            </View>
-          </View>
-          <View style={styles.EventDateTime}>
-            <View>
-              <View>
-                <Text style={styles.BodyText}>217 Coastal St.</Text>
-                <Text style={styles.BodyText}>Dana Point, CA</Text>
-              </View>
-              <View style={{top: 15}}>
-                <Text style={styles.BodyText}>Tuesday, November 6th</Text>
-                <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
-              </View>
-            </View>
-            <View style={{left: 30}}>
-                <Text style={styles.BodyText}>8/16 Spots Filled</Text>
-            </View>
-                
-          </View>
-        </ScrollView>
-=======
   static navigationOptions = ({navigation}) => {
     return {
       title: navigation.getParam('event', {title: 'Event Page'}).title,
     };
   }
->>>>>>> 4d2af75a2befbcea2812490d8b1053f94ecf6304
 
   render(){
     const nav = this.props.navigation;
@@ -130,15 +93,20 @@ class EventPage extends Component {
             <Text style={styles.NameText}>{event.host.name}</Text>
           </View>
         </View>
-        <View style={styles.EventDateTime}>
+        <View style={styles.EventDateTime}>     
           <View>
-            <Text style={styles.BodyText}>{event.addr1}</Text>
-            <Text style={styles.BodyText}>{event.addr2}</Text>
-          </View>
-          <View style={{left: 30}}>
-            <Text style={styles.BodyText}>{event.date}</Text>
-            <Text style={styles.BodyText}>{event.time}</Text>
-          </View>
+            <View>
+              <Text style={styles.BodyText}>217 Coastal St.</Text>
+              <Text style={styles.BodyText}>Dana Point, CA</Text>
+            </View>
+              <View style={{top: 15}}>
+                <Text style={styles.BodyText}>Tuesday, November 6th</Text>
+                <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
+              </View>
+            </View>
+            <View style={{left: 30}}>
+                <Text style={styles.BodyText}>8/16 Spots Filled</Text>
+            </View>
         </View>
       </ScrollView>
 
