@@ -10,42 +10,34 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import MapView from 'react-native-maps';
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStore } from "redux";
+
+const store = createStore(
+  (state = {events: [], users: []}, action) => {
+    switch (action.type) {
+      case 'ADD_EVENT':
+        action.event.key = Math.random();
+        action.event.host = state.users.find((user) => user.key === action.event.hostKey);
+        return {
+          events: [...state.events, action.event],
+          users: state.users,
+        }
+      case 'ADD_USER':
+        action.user.key = Math.random();
+        return {
+          events: state.events,
+          users: [...state.users, action.user],
+        }
+      default:
+        return state;
+    }
+  }
+);
 
 class Map extends Component {
   constructor(props) {
     super(props);
-  {/*This is for sure NOT the best place for this lol, need storage for all events + users*/}
-  this.state = {
-      events: [{
-        key: 1,
-        title: 'Painting Workshop',
-        host: 'Zack Cinquini',
-        hostIcon: require('./assets/zack.jpeg'),
-        addr1: 'Arizona Garden',
-        addr2: 'Stanford, CA 94305',
-        date: 'Sunday, December 9th',
-        time: '2:00pm - 4:00pm',
-        coordinates: {
-          latitude: 37.425054,
-          longitude:  -122.161875
-        },
-      },
-      {
-        key: 2,
-        title: 'Botanical Art Workshop',
-        host: 'Zack Cinquini',
-        hostIcon: require('./assets/zack.jpeg'),
-        addr1: '673 Escondido Rd',
-        addr2: 'Stanford, CA 94305',
-        date: 'Saturday, December 8th',
-        time: '6:30pm - 8:30pm',
-        coordinates: {
-          latitude: 37.435866,
-          longitude: -122.171112
-        },
-      }]
-    }
-  };
+  }
 
   render() {
     return (
@@ -58,7 +50,7 @@ class Map extends Component {
           longitudeDelta: 0.0421/1.5,
         }}
       >
-      {this.state.events.map(event => (
+      {store.getState().events.map(event => (
         <MapView.Marker
           coordinate={event.coordinates}
           title={event.title}
@@ -95,10 +87,10 @@ class EventPage extends Component {
           <Text style={styles.EventTitle}>{event.title}</Text>
         </View>
         <View style={{top: 25}, styles.UserProfileBox}>
-          <Image source={event.hostIcon} style={styles.UserProfileImage} />
+          <Image source={event.host.icon} style={styles.UserProfileImage} />
           <View style={{left: 15}}>
             <Text style={styles.BodyTextGray}>Hosted By</Text>
-            <Text style={styles.NameText}>{event.host}</Text>
+            <Text style={styles.NameText}>{event.host.name}</Text>
           </View>
         </View>
         <View style={styles.EventDateTime}>
@@ -124,6 +116,38 @@ class Homescreen extends Component<Props> {
     title: 'spark',
   }
   render() {
+    {/*Set up default users*/}
+    store.dispatch({ type: 'ADD_USER', user: {
+      name: 'Zack Cinquini',
+      icon: require('./assets/zack.jpeg'),
+    }});
+
+    {/*Set up default events*/}
+    const zackKey = store.getState().users[0].key;
+    store.dispatch({ type: 'ADD_EVENT', event: {
+      title: 'Painting Workshop',
+      hostKey: zackKey,
+      addr1: 'Arizona Garden',
+      addr2: 'Stanford, CA 94305',
+      date: 'Sunday, December 9th',
+      time: '2:00pm - 4:00pm',
+      coordinates: {
+        latitude: 37.425054,
+        longitude:  -122.161875
+      },
+    }});
+    store.dispatch({ type: 'ADD_EVENT', event: {
+      title: 'Botanical Art Workshop',
+      hostKey: zackKey,
+      addr1: '673 Escondido Rd',
+      addr2: 'Stanford, CA 94305',
+      date: 'Saturday, December 8th',
+      time: '6:30pm - 8:30pm',
+      coordinates: {
+        latitude: 37.435866,
+        longitude: -122.171112
+      },
+    }});
     return (
       <View style={styles.mapcontainer}>
         <Map nav={this.props.navigation}/>
