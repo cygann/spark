@@ -14,18 +14,31 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      markers: [{
-        title: 'Painting Workshop',
+  {/*This is for sure NOT the best place for this lol, need storage for all events + users*/}
+  this.state = {
+      events: [{
         key: 1,
+        title: 'Painting Workshop',
+        host: 'Zack Cinquini',
+        hostIcon: require('./assets/zack.jpeg'),
+        addr1: 'Arizona Garden',
+        addr2: 'Stanford, CA 94305',
+        date: 'Sunday, December 9th',
+        time: '2:00pm - 4:00pm',
         coordinates: {
           latitude: 37.425054,
           longitude:  -122.161875
         },
       },
       {
-        title: 'Botanical Art Workshop',
         key: 2,
+        title: 'Botanical Art Workshop',
+        host: 'Zack Cinquini',
+        hostIcon: require('./assets/zack.jpeg'),
+        addr1: '673 Escondido Rd',
+        addr2: 'Stanford, CA 94305',
+        date: 'Saturday, December 8th',
+        time: '6:30pm - 8:30pm',
         coordinates: {
           latitude: 37.435866,
           longitude: -122.171112
@@ -45,14 +58,14 @@ class Map extends Component {
           longitudeDelta: 0.0421/1.5,
         }}
       >
-      {this.state.markers.map(marker => (
+      {this.state.events.map(event => (
         <MapView.Marker
-          coordinate={marker.coordinates}
-          title={marker.title}
+          coordinate={event.coordinates}
+          title={event.title}
           image={require('./assets/PinOrange.png')}
-          key={marker.key}
+          key={event.key}
           onPress={() => {
-            this.props.nav.navigate('Event', {eventKey: marker.key})}
+            this.props.nav.navigate('Event', {event: event})}
           }
         />
       ))}
@@ -63,58 +76,56 @@ class Map extends Component {
 
 //Event page that shows event details
 class EventPage extends Component {
-    render(){
-      const nav = this.props.navigation;
-      const eventKey = nav.getParam('eventKey', 0);
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: navigation.getParam('event', {title: 'Event Page'}).title,
+    };
+  }
 
-      return (
-        <ScrollView>
-          <View style={styles.banner} />
-          <View style={styles.MapPreviewBox}>
-            <Map />
-          </View>
-          <View style={styles.EventTitleBox}>
-            <Text style={styles.EventTitle}>Painting Workshop</Text>
-          </View>
-          <View style={{top: 25}, styles.UserProfileBox}>
-            <Image source={require('./assets/zack.jpeg')} style={styles.UserProfileImage} />
-            <View style={{left: 15}}>
-              <Text style={styles.BodyTextGray}>Hosted By</Text>
-              <Text style={styles.NameText}>Zack Cinquini</Text>
-            </View>
-          </View>
-          <View style={styles.EventDateTime}>
-            <View>
-              <Text style={styles.BodyText}>217 Coastal St.</Text>
-              <Text style={styles.BodyText}>Dana Point, CA</Text>
-            </View>
-            <View style={{left: 30}}>
-              <Text style={styles.BodyText}>Tuesday, November 6th</Text>
-              <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
-            </View>
-          </View>
-        </ScrollView>
+  render(){
+    const nav = this.props.navigation;
+    const event = nav.getParam('event', {});
 
-      );
-    }
-}
-
-/*class UserProfile extends Component {
-  render() {
     return (
+      <ScrollView>
+        <View style={styles.MapPreviewBox}>
+          <Map />
+        </View>
+        <View style={styles.EventTitleBox}>
+          <Text style={styles.EventTitle}>{event.title}</Text>
+        </View>
+        <View style={{top: 25}, styles.UserProfileBox}>
+          <Image source={event.hostIcon} style={styles.UserProfileImage} />
+          <View style={{left: 15}}>
+            <Text style={styles.BodyTextGray}>Hosted By</Text>
+            <Text style={styles.NameText}>{event.host}</Text>
+          </View>
+        </View>
+        <View style={styles.EventDateTime}>
+          <View>
+            <Text style={styles.BodyText}>{event.addr1}</Text>
+            <Text style={styles.BodyText}>{event.addr2}</Text>
+          </View>
+          <View style={{left: 30}}>
+            <Text style={styles.BodyText}>{event.date}</Text>
+            <Text style={styles.BodyText}>{event.time}</Text>
+          </View>
+        </View>
+      </ScrollView>
 
     );
   }
-}*/
+}
 
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
 type Props = {};
 class Homescreen extends Component<Props> {
+  static navigationOptions = {
+    title: 'spark',
+  }
   render() {
     return (
       <View style={styles.mapcontainer}>
-        <View style={styles.banner} />
-
         <Map nav={this.props.navigation}/>
       </View>
     );
@@ -129,7 +140,18 @@ const AppNavigator = createStackNavigator(
     Event: {screen: EventPage},
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Home",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#2AACAD'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontFamily: 'Roboto',
+        fontSize: 18,
+        fontWeight: 'bold',
+      }
+    }
   }
 );
 
@@ -179,17 +201,13 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top: 75,
+    top: 0,
     left: 0,
     right: 0,
     bottom: 0,
   },
 
   //General Styles
-  banner: {
-    backgroundColor: '#2AACAD',
-    height: 75,
-  },
   MapPreviewBox: {
     height: 150,
   },
