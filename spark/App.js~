@@ -93,7 +93,7 @@ class EventPage extends Component {
             <Text style={styles.NameText}>{event.host.name}</Text>
           </View>
         </View>
-        <View style={styles.EventDateTime}>     
+        <View style={styles.EventDetails}>     
           <View>
             <View>
               <Text style={styles.BodyText}>217 Coastal St.</Text>
@@ -103,11 +103,23 @@ class EventPage extends Component {
                 <Text style={styles.BodyText}>Tuesday, November 6th</Text>
                 <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
               </View>
+          </View>
+            <View>
+              <View style={{left: 30}}>
+                  <Text style={styles.BodyText}>8/16 Spots Filled</Text>
+              </View>
+              <View style={styles.EventAttendeesBox}>
+                  <Image source={require('./assets/landay.jpg')} style={styles.UserProfileImageSmall} />
+                  <Image source={require('./assets/minhan.jpeg')} style={styles.UserProfileImageSmall} />
+                  <Image source={require('./assets/ge.jpg')} style={styles.UserProfileImageSmall} />
+                  <Image source={require('./assets/mtl.jpg')} style={styles.UserProfileImageSmall} />
+                  <Image source={require('./assets/tyler.jpg')} style={styles.UserProfileImageSmall} />
+              </View>
+              <View>
+                <Text style={styles.BodyText, textDecorationLine='underline', left: 30}> + 5 more...</Text>
+              </View>
             </View>
-            <View style={{left: 30}}>
-                <Text style={styles.BodyText}>8/16 Spots Filled</Text>
-            </View>
-        </View>
+          </View>
       </ScrollView>
 
     );
@@ -245,18 +257,28 @@ const styles = StyleSheet.create({
       borderRadius: 25,
       width: 50
   },
+  UserProfileImageSmall: {
+    height: 30,
+    borderRadius: 15,
+    width: 30,
+  },
   UserProfileBox: {
     flexDirection: 'row',
     left: 15,
     top: 15,
   },
-  EventDateTime: {
+  EventDetails: {
     left: 15,
     top: 30,
     flexDirection: 'row',
   },
   EventAttendeesBox: {
-    left: 15,
+    left: 25,
+    top: 0,
     flexDirection: 'row',
-  }
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 40,
+    width: 175,
+  },
 });
