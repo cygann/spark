@@ -8,12 +8,13 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
 import { createStore } from "redux";
 
 import { styles } from './components/Styles';
 import { HomeScreen } from './components/HomeScreen';
-import { EventPage } from './components/EventPage'
+import { EventPage } from './components/EventPage';
+import { HostEvent } from './components/HostEvent';
 
 const store = createStore(
   (state = {events: [], users: []}, action) => {
@@ -56,6 +57,7 @@ store.dispatch({ type: 'ADD_EVENT', event: {
     latitude: 37.425054,
     longitude:  -122.161875
   },
+  status: 'standard',
 }});
 store.dispatch({ type: 'ADD_EVENT', event: {
   title: 'Botanical Art Workshop',
@@ -68,17 +70,24 @@ store.dispatch({ type: 'ADD_EVENT', event: {
     latitude: 37.435866,
     longitude: -122.171112
   },
+  status: 'standard',
 }});
+
+export const HamburgerMenuNavigator = createDrawerNavigator({
+  Home: {screen: HomeScreen},
+  HostEvent: {screen: HostEvent},
+});
 
 //App Navigator to move between screens
 const AppNavigator = createStackNavigator(
   {
-    Home: {screen: HomeScreen},
+    Home: {screen: HamburgerMenuNavigator},
     Event: {screen: EventPage},
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
+      title: 'spark',
       headerStyle: {
         backgroundColor: '#2AACAD'
       },

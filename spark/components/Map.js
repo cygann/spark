@@ -24,7 +24,8 @@ export class Map extends Component {
         <MapView.Marker
           coordinate={event.coordinates}
           title={event.title}
-          image={require('../assets/PinOrange.png')}
+          image={event.status === 'attending' ?
+          require('../assets/PinGreen.png') : require('../assets/PinOrange.png') }
           key={event.key}
           onPress={() => {
             this.props.nav.navigate('Event', {event: event})}
