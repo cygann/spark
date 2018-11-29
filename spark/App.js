@@ -18,6 +18,7 @@ import { HostEvent } from './components/HostEvent';
 import { HamburgerMenuContents } from './components/HamburgerMenuContents';
 import { Inbox } from './components/Inbox';
 import { EmptyScreen } from './components/EmptyScreen';
+import { AttendConfirmation } from './components/AttendConfirmation';
 
 const store = createStore(
   (state = {events: [], users: []}, action) => {
@@ -84,6 +85,7 @@ const AppNavigator = createStackNavigator(
     HostEvent: {screen: HostEvent},
     EmptyScreen: {screen: EmptyScreen},
     Inbox: {screen: Inbox},
+    AttendConfirmation: {screen: AttendConfirmation},
   },
   {
     initialRouteName: "Home",

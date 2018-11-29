@@ -45,7 +45,7 @@ export class EventPage extends Component {
           </View>
             <View>
               <View style={{left: 30}}>
-                  <Text style={styles.BodyText}>8/16 Spots Filled</Text>
+                  <Text style={styles.BodyText}>10/16 Spots Filled</Text>
               </View>
               <View style={styles.EventAttendeesBox}>
                   <Image source={require('../assets/landay.jpg')} style={styles.UserProfileImageSmall} />
@@ -69,7 +69,7 @@ export class EventPage extends Component {
             <TouchableOpacity
                 activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
-                onPress={() => {}}>
+                onPress={() => {nav.navigate('AttendConfirmation', {event: event})}}>
                 <Image style={styles.EventButton} source={require('../assets/attend_button.png')} />
             </TouchableOpacity>
             <TouchableOpacity

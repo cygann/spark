@@ -11,6 +11,12 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  ConfirmEventTitle: {
+    fontFamily: 'Roboto',
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#a4c537',
+  },
   BodyText: {
     fontFamily: 'Roboto',
     fontSize: 14,
