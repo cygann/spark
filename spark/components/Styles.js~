@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     bottom: 0,
   },
 
-//General Styles
+  //General Styles
   MapPreviewBox: {
     height: 150,
   },
@@ -53,48 +53,18 @@ export const styles = StyleSheet.create({
       borderRadius: 25,
       width: 50
   },
-  UserProfileImageSmall: {
-    height: 30,
-    borderRadius: 15,
-    width: 30,
-  },
   UserProfileBox: {
     flexDirection: 'row',
     left: 15,
     top: 15,
   },
-  EventDetails: {
+  EventDateTime: {
     left: 15,
     top: 30,
-    height: 140,
     flexDirection: 'row',
   },
   EventAttendeesBox: {
-    left: 25,
-    top: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 40,
-    width: 175,
-  },
-  EventAbout: {
     left: 15,
-    right: 30,
-    height: 140,
-  },
-
-  //Button Styles
-  EventButtonBox: {
-    //flexDirection: 'row',
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-    flex: 1,
-  },
-  AttendButton: {
-      backgroundColor: '#A4C537',
-      padding: 10,
-      alignItems: 'center',
-      
-  },
+    flexDirection: 'row',
+  }
 });
