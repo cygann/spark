@@ -7,9 +7,10 @@ import { styles } from './Styles';
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
 export class HomeScreen extends Component {
   static navigationOptions = {
-    title: 'spark',
-  }
+  };
+
   render() {
+    this.props.navigation.openDrawer();
     const myStore = this.props.screenProps.store;
     return (
       <View style={styles.mapcontainer}>
