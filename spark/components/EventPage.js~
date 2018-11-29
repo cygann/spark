@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 
 import { Map } from './Map';
 import { styles } from './Styles';
@@ -67,9 +67,16 @@ export class EventPage extends Component {
         </View>
         <View style={styles.EventButtonBox}>
             <TouchableOpacity
+                activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
                 onPress={() => {}}>
-                <Text>Attend Event</Text>
+                <Image style={styles.EventButton} source={require('../assets/attend_button.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity
+                activeOpacity={0.75}
+                buttonStyle={styles.AttendButton}
+                onPress={() => {}}>
+                <Image style={styles.EventButton} source={require('../assets/attend_button.png')} />
             </TouchableOpacity>
         </View>
       </ScrollView>
