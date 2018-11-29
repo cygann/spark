@@ -79,22 +79,26 @@ export const styles = StyleSheet.create({
     width: 175,
   },
   EventAbout: {
-    left: 15,
-    right: 30,
+    marginLeft: 15,
+    marginRight: 30,
     height: 140,
   },
 
   //Button Styles
   EventButtonBox: {
-    //flexDirection: 'row',
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 15,
+    marginRight: 15,
   },
   AttendButton: {
       backgroundColor: '#A4C537',
-      padding: 10,
       alignItems: 'center',
+      borderRadius: 10,
       
+  },
+  EventButton: {
+    height: 38,
+    width: 160,
   },
 });

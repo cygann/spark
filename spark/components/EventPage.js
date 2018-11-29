@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 
 import { Map } from './Map';
 import { styles } from './Styles';
@@ -66,11 +66,18 @@ export class EventPage extends Component {
           <Text style={styles.BodyText}>Come join us for an evening of casual painting! I like to host these weekly on Tuesday nights. Each week, we have a different painting theme, where we all paint the same landscape, Bob Ross style almost! All materials are provided, so don’t worry about having to bring anything.</Text>
         </View>
         <View style={styles.EventButtonBox}>
-        {/*<TouchableOpacity
+            <TouchableOpacity
+                activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
                 onPress={() => {}}>
-                <Text>Attend Event</Text>
-            </TouchableOpacity> */}
+                <Image style={styles.EventButton} source={require('../assets/attend_button.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity
+                activeOpacity={0.75}
+                buttonStyle={styles.AttendButton}
+                onPress={() => {}}>
+                <Image style={styles.EventButton} source={require('../assets/invitefriends_button.png')} />
+            </TouchableOpacity>
         </View>
       </ScrollView>
 
