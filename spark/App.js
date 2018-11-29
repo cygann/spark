@@ -16,6 +16,7 @@ import { HomeScreen } from './components/HomeScreen';
 import { EventPage } from './components/EventPage';
 import { HostEvent } from './components/HostEvent';
 import { HamburgerMenuContents } from './components/HamburgerMenuContents';
+import { EmptyScreen } from './components/EmptyScreen';
 
 const store = createStore(
   (state = {events: [], users: []}, action) => {
@@ -74,16 +75,22 @@ store.dispatch({ type: 'ADD_EVENT', event: {
   status: 'standard',
 }});
 
-export const HamburgerMenuNavigator = createDrawerNavigator({
-  Home: {screen: HomeScreen},
-  HostEvent: {screen: HostEvent},
-});
+export const HamburgerMenuNavigator = createDrawerNavigator(
+  {
+    Home: {screen: HomeScreen},
+  },
+  {
+       contentComponent: HamburgerMenuContents,
+  }
+);
 
 //App Navigator to move between screens
 const AppNavigator = createStackNavigator(
   {
     Home: {screen: HamburgerMenuNavigator},
     Event: {screen: EventPage},
+    HostEvent: {screen: HostEvent},
+    EmptyScreen: {screen: EmptyScreen},
   },
   {
     initialRouteName: "Home",

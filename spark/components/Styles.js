@@ -44,6 +44,40 @@ export const styles = StyleSheet.create({
     bottom: 0,
   },
 
+  // Hamburger Menu Styles
+  HamburgerMenuContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  HamburgerMenuButtonContainer: {
+    flexDirection: 'row',
+    height: 40,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 3,
+    marginBottom: 3,
+  },
+  HamburgerMenuCenteredLine: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  HamburgerMenuProfilePic: {
+    height: 150,
+    width: 150,
+    borderRadius: 75,
+    borderColor: '#2AACAD',
+    borderWidth: 7,
+  },
+  HamburgerMenuIcon: {
+    height: 28,
+    width: 28,
+    marginTop: 6,
+  },
+  HamburgerMenuButton: {
+    fontFamily: 'Roboto',
+    fontSize: 18,
+  },
+
 //General Styles
   MapPreviewBox: {
     height: 150,
@@ -95,7 +129,7 @@ export const styles = StyleSheet.create({
       backgroundColor: '#A4C537',
       alignItems: 'center',
       borderRadius: 10,
-      
+
   },
   EventButton: {
     height: 38,
