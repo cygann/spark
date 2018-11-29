@@ -45,10 +45,20 @@ const store = createStore(
 store.dispatch({ type: 'ADD_USER', user: {
   name: 'Zack Cinquini',
   icon: require('./assets/zack.jpeg'),
+  conversation: [
+  ]
+}});
+store.dispatch({ type: 'ADD_USER', user: {
+  name: 'Bianca Yu',
+  icon: require('./assets/zack.jpeg'),
+  conversation: [
+    (false, "Do you want to go to the painting workshop this week?")
+  ]
 }});
 
 {/*Set up default events*/}
 const zackKey = store.getState().users[0].key;
+
 store.dispatch({ type: 'ADD_EVENT', event: {
   title: 'Painting Workshop',
   hostKey: zackKey,
