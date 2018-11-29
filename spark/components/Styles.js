@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   BodyTextGray: {
     fontFamily: 'Roboto',
     fontSize: 14,
-    //color: #8D8D8D, //light gray
+    color: '#8D8D8D', //light gray
   },
   NameText: {
     fontFamily: 'Roboto',
@@ -89,6 +89,35 @@ export const styles = StyleSheet.create({
   HamburgerMenuButton: {
     fontFamily: 'Roboto',
     fontSize: 18,
+  },
+
+  //Inbox Styles
+  InboxLineItemContainer: {
+
+  },
+  InboxLineItem: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 50,
+    padding: 10,
+    paddingBottom: 60,
+    borderWidth: 1,
+    borderColor: '#E5E5E5',
+  },
+  InboxSummaryText: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    height: 50,
+    marginLeft: 10,
+  },
+  ArrowRight: {
+    width:24*0.6,
+    height:39*0.6,
+    marginTop: (70-39*0.6)*0.5-10,
+    marginLeft: 10,
   },
 
 //General Styles
