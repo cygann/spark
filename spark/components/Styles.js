@@ -26,6 +26,13 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
+  //Header Styles
+  HeaderLogo: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+
   //Map Styles
   mapcontainer: {
     position: 'absolute',

@@ -16,6 +16,7 @@ import { HomeScreen } from './components/HomeScreen';
 import { EventPage } from './components/EventPage';
 import { HostEvent } from './components/HostEvent';
 import { HamburgerMenuContents } from './components/HamburgerMenuContents';
+import { Inbox } from './components/Inbox';
 import { EmptyScreen } from './components/EmptyScreen';
 
 const store = createStore(
@@ -75,27 +76,19 @@ store.dispatch({ type: 'ADD_EVENT', event: {
   status: 'standard',
 }});
 
-export const HamburgerMenuNavigator = createDrawerNavigator(
-  {
-    Home: {screen: HomeScreen},
-  },
-  {
-       contentComponent: HamburgerMenuContents,
-  }
-);
-
 //App Navigator to move between screens
 const AppNavigator = createStackNavigator(
   {
-    Home: {screen: HamburgerMenuNavigator},
+    Home: {screen: HomeScreen},
     Event: {screen: EventPage},
     HostEvent: {screen: HostEvent},
     EmptyScreen: {screen: EmptyScreen},
+    Inbox: {screen: Inbox},
   },
   {
     initialRouteName: "Home",
+    headerBackTitleVisible: false,
     defaultNavigationOptions: {
-      title: 'spark',
       headerStyle: {
         backgroundColor: '#2AACAD'
       },
@@ -109,7 +102,16 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+export const HamburgerMenuNavigator = createDrawerNavigator(
+  {
+    Home: {screen: AppNavigator},
+  },
+  {
+     contentComponent: HamburgerMenuContents,
+  }
+);
+
+const AppContainer = createAppContainer(HamburgerMenuNavigator);
 
 export default class App extends React.Component {
   render() {

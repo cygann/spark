@@ -37,7 +37,7 @@ export class HamburgerMenuContents extends Component {
   render() {
     return (
       <View style={styles.HamburgerMenuContainer}>
-      <HamburgerMenuBlankSpace size={{height: 50}}/>
+      <HamburgerMenuBlankSpace size={{height: 70}}/>
         <View style={styles.HamburgerMenuCenteredLine}>
           <Image source={require('../assets/zack.jpeg')} style={styles.HamburgerMenuProfilePic}/>
         </View>
