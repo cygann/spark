@@ -37,6 +37,39 @@ const store = createStore(
   }
 );
 
+{/*Set up default users*/}
+store.dispatch({ type: 'ADD_USER', user: {
+  name: 'Zack Cinquini',
+  icon: require('./assets/zack.jpeg'),
+}});
+
+{/*Set up default events*/}
+const zackKey = store.getState().users[0].key;
+store.dispatch({ type: 'ADD_EVENT', event: {
+  title: 'Painting Workshop',
+  hostKey: zackKey,
+  addr1: 'Arizona Garden',
+  addr2: 'Stanford, CA 94305',
+  date: 'Sunday, December 9th',
+  time: '2:00pm - 4:00pm',
+  coordinates: {
+    latitude: 37.425054,
+    longitude:  -122.161875
+  },
+}});
+store.dispatch({ type: 'ADD_EVENT', event: {
+  title: 'Botanical Art Workshop',
+  hostKey: zackKey,
+  addr1: '673 Escondido Rd',
+  addr2: 'Stanford, CA 94305',
+  date: 'Saturday, December 8th',
+  time: '6:30pm - 8:30pm',
+  coordinates: {
+    latitude: 37.435866,
+    longitude: -122.171112
+  },
+}});
+
 //App Navigator to move between screens
 const AppNavigator = createStackNavigator(
   {
