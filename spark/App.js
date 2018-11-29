@@ -15,6 +15,7 @@ import { styles } from './components/Styles';
 import { HomeScreen } from './components/HomeScreen';
 import { EventPage } from './components/EventPage';
 import { HostEvent } from './components/HostEvent';
+import { HamburgerMenuContents } from './components/HamburgerMenuContents';
 
 const store = createStore(
   (state = {events: [], users: []}, action) => {
