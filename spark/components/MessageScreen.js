@@ -12,10 +12,10 @@ export class MessageScreen extends Component {
   }
 
   render() {
-    const nav = this.props.navigation;
-    const user = nav.getParam('user', {});
-    const myStore = this.props.screenProps.store;
-    myStore.dispatch({ type: 'READ_MESSAGE', user: user});
+    // const nav = this.props.navigation;
+    // const user = nav.getParam('user', {});
+    // const myStore = this.props.screenProps.store;
+    // myStore.dispatch({ type: 'READ_MESSAGE', user: user});
     return (
       <View />
     );
