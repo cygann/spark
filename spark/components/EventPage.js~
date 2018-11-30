@@ -80,7 +80,10 @@ export class EventPage extends Component {
                 activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
                 onPress={() => {nav.navigate('AttendConfirmation', {event: event})}}>
-                <Image style={styles.EventButton} source={require('../assets/attend_button.png')} />
+                
+                <Image style={styles.EventButton} source={event.status === 'attending' ?
+                    require('../assets/unattend_button.png') : require('../assets/attend_button.png') } />
+                {/*<Image style={styles.EventButton} source={require('../assets/attend_button.png')} />*/}
             </TouchableOpacity>
             <TouchableOpacity
                 activeOpacity={0.75}
