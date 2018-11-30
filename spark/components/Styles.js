@@ -142,13 +142,13 @@ export const styles = StyleSheet.create({
   },
   EventDetails: {
     marginLeft: 15,
-    top: 30,
-    height: 140,
-    flexDirection: 'row',
+    marginTop: 30,
+    height: 120,
   },
   EventDetail: {
     flexDirection: 'row',
-
+    marginTop: 15,
+    
   },
   EventAttendeesBox: {
     top: 0,
@@ -164,8 +164,18 @@ export const styles = StyleSheet.create({
     height: 140,
   },
   SpotsBox: {
-      marginLeft: 15,
-      marginBottom: 15,
+      marginLeft: 25,
+      marginBottom: 20,
+  },
+  EventDetailIconBox: {
+      marginRight: 10,
+      marginTop: 5,
+      height: 30,
+      width: 30,
+  },
+  EventDetailIcon: {
+      height: 30,
+      width: 30,
   },
 
   //Button Styles

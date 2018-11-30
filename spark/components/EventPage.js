@@ -35,13 +35,19 @@ export class EventPage extends Component {
         <View style={styles.EventDetails}>     
           <View>
             <View style={styles.EventDetail}>
+                <View style={styles.EventDetailIconBox}>
+                    <Image source={require('../assets/location_icon.png')} style={styles.EventDetailIcon} />
+                </View>
                 <View>
                     <Text style={styles.BodyText}>217 Coastal St.</Text>
                     <Text style={styles.BodyText}>Dana Point, CA</Text>
                 </View>
             </View>
-            <View style={styles.EventDetail, {top: 15}}>
-                <View>
+            <View style={styles.EventDetail}>
+                <View style={styles.EventDeatilIconBox}>
+                    <Image source={require('../assets/date_icon.png')} style={styles.EventDetailIcon} />
+                </View>
+                <View style={{marginLeft:10}}>
                     <Text style={styles.BodyText}>Tuesday, November 6th</Text>
                     <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
                 </View>
@@ -64,7 +70,7 @@ export class EventPage extends Component {
             </View>
           </View>
         <View>
-          <Text style={styles.NameText, {left: 15}}>About</Text>
+          <Text style={styles.NameText, {marginLeft: 15}}>About</Text>
         </View>
         <View style={styles.EventAbout}>
           <Text style={styles.BodyText}>Come join us for an evening of casual painting! I like to host these weekly on Tuesday nights. Each week, we have a different painting theme, where we all paint the same landscape, Bob Ross style almost! All materials are provided, so don’t worry about having to bring anything.</Text>
