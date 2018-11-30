@@ -34,31 +34,35 @@ export class EventPage extends Component {
         </View>
         <View style={styles.EventDetails}>     
           <View>
-            <View>
-              <Text style={styles.BodyText}>217 Coastal St.</Text>
-              <Text style={styles.BodyText}>Dana Point, CA</Text>
+            <View style={styles.EventDetail}>
+                <View>
+                    <Text style={styles.BodyText}>217 Coastal St.</Text>
+                    <Text style={styles.BodyText}>Dana Point, CA</Text>
+                </View>
             </View>
-            <View style={{top: 15}}>
-              <Text style={styles.BodyText}>Tuesday, November 6th</Text>
-              <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
+            <View style={styles.EventDetail, {top: 15}}>
+                <View>
+                    <Text style={styles.BodyText}>Tuesday, November 6th</Text>
+                    <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
+                </View>
             </View>
           </View>
+        </View>
+          <View style={styles.SpotsBox}>
             <View>
-              <View style={{left: 30}}>
                   <Text style={styles.BodyText}>10/16 Spots Filled</Text>
-              </View>
-              <View style={styles.EventAttendeesBox}>
+            </View>
+            <View style={styles.EventAttendeesBox}>
                   <Image source={require('../assets/landay.jpg')} style={styles.UserProfileImageSmall} />
                   <Image source={require('../assets/minhan.jpeg')} style={styles.UserProfileImageSmall} />
                   <Image source={require('../assets/ge.jpg')} style={styles.UserProfileImageSmall} />
                   <Image source={require('../assets/mtl.jpg')} style={styles.UserProfileImageSmall} />
                   <Image source={require('../assets/tyler.jpg')} style={styles.UserProfileImageSmall} />
-              </View>
-              <View>
-                <Text style={styles.BodyText, textDecorationLine='underline', {left: 30}}> + 5 more...</Text>
-              </View>
             </View>
-        </View>
+            <View>
+                <Text style={styles.BodyText, textDecorationLine='underline'}> + 5 more...</Text>
+            </View>
+          </View>
         <View>
           <Text style={styles.NameText, {left: 15}}>About</Text>
         </View>

@@ -43,22 +43,22 @@ export class EventPage extends Component {
               <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
             </View>
           </View>
+        </View>
+          <View style={styles.SpotsBox}>
             <View>
-              <View style={{left: 30}}>
-                  <Text style={styles.BodyText}>8/16 Spots Filled</Text>
-              </View>
-              <View style={styles.EventAttendeesBox}>
+                  <Text style={styles.BodyText}>10/16 Spots Filled</Text>
+            </View>
+            <View style={styles.EventAttendeesBox}>
                   <Image source={require('../assets/landay.jpg')} style={styles.UserProfileImageSmall} />
                   <Image source={require('../assets/minhan.jpeg')} style={styles.UserProfileImageSmall} />
                   <Image source={require('../assets/ge.jpg')} style={styles.UserProfileImageSmall} />
                   <Image source={require('../assets/mtl.jpg')} style={styles.UserProfileImageSmall} />
                   <Image source={require('../assets/tyler.jpg')} style={styles.UserProfileImageSmall} />
-              </View>
-              <View>
-                <Text style={styles.BodyText, textDecorationLine='underline', {left: 30}}> + 5 more...</Text>
-              </View>
             </View>
-        </View>
+            <View>
+                <Text style={styles.BodyText, textDecorationLine='underline'}> + 5 more...</Text>
+            </View>
+          </View>
         <View>
           <Text style={styles.NameText, {left: 15}}>About</Text>
         </View>
@@ -69,14 +69,14 @@ export class EventPage extends Component {
             <TouchableOpacity
                 activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
-                onPress={() => {}}>
+                onPress={() => {nav.navigate('AttendConfirmation', {event: event})}}>
                 <Image style={styles.EventButton} source={require('../assets/attend_button.png')} />
             </TouchableOpacity>
             <TouchableOpacity
                 activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
                 onPress={() => {}}>
-                <Image style={styles.EventButton} source={require('../assets/attend_button.png')} />
+                <Image style={styles.EventButton} source={require('../assets/invitefriends_button.png')} />
             </TouchableOpacity>
         </View>
       </ScrollView>

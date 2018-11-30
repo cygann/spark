@@ -4,7 +4,8 @@ import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native
 export const styles = StyleSheet.create({
   //Font and text styles:
   EventTitleBox: {
-      left: 15,
+      marginLeft: 15,
+      marginTop: 15,
   },
   EventTitle: {
     fontFamily: 'Roboto',
@@ -140,13 +141,16 @@ export const styles = StyleSheet.create({
     top: 15,
   },
   EventDetails: {
-    left: 15,
+    marginLeft: 15,
     top: 30,
     height: 140,
     flexDirection: 'row',
   },
+  EventDetail: {
+    flexDirection: 'row',
+
+  },
   EventAttendeesBox: {
-    left: 25,
     top: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -158,6 +162,10 @@ export const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 30,
     height: 140,
+  },
+  SpotsBox: {
+      marginLeft: 15,
+      marginBottom: 15,
   },
 
   //Button Styles
