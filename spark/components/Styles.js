@@ -86,9 +86,6 @@ export const styles = StyleSheet.create({
   },
 
   //Inbox Styles
-  InboxLineItemContainer: {
-
-  },
   InboxLineItem: {
     flex: 1,
     flexDirection: 'row',
@@ -112,6 +109,17 @@ export const styles = StyleSheet.create({
     height:39*0.6,
     marginTop: (70-39*0.6)*0.5-10,
     marginLeft: 10,
+  },
+  InboxUnreadBadge: {
+    position: 'absolute',
+    top: 1,
+    left: 1,
+    height: 12,
+    width: 12,
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: '#fff',
+    backgroundColor: '#2AACAD'
   },
 
 //General Styles
