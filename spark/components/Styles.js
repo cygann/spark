@@ -4,12 +4,19 @@ import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native
 export const styles = StyleSheet.create({
   //Font and text styles:
   EventTitleBox: {
-      left: 15,
+      marginLeft: 15,
+      marginTop: 15,
   },
   EventTitle: {
     fontFamily: 'Roboto',
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  ConfirmEventTitle: {
+    fontFamily: 'Roboto',
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#a4c537',
   },
   BodyText: {
     fontFamily: 'Roboto',
@@ -142,13 +149,16 @@ export const styles = StyleSheet.create({
     top: 15,
   },
   EventDetails: {
-    left: 15,
-    top: 30,
-    height: 140,
+    marginLeft: 15,
+    marginTop: 30,
+    height: 120,
+  },
+  EventDetail: {
     flexDirection: 'row',
+    marginTop: 15,
+    
   },
   EventAttendeesBox: {
-    left: 25,
     top: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -160,6 +170,20 @@ export const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 30,
     height: 140,
+  },
+  SpotsBox: {
+      marginLeft: 25,
+      marginBottom: 20,
+  },
+  EventDetailIconBox: {
+      marginRight: 10,
+      marginTop: 5,
+      height: 30,
+      width: 30,
+  },
+  EventDetailIcon: {
+      height: 30,
+      width: 30,
   },
 
   //Button Styles

@@ -39,7 +39,7 @@ export class HamburgerMenuContents extends Component {
       <View style={styles.HamburgerMenuContainer}>
       <HamburgerMenuBlankSpace size={{height: 70}}/>
         <View style={styles.HamburgerMenuCenteredLine}>
-          <Image source={require('../assets/zack.jpeg')} style={styles.HamburgerMenuProfilePic}/>
+          <Image source={require('../assets/sarah.jpg')} style={styles.HamburgerMenuProfilePic}/>
         </View>
         <HamburgerMenuBlankSpace size={{height: 10}}/>
         <View style={styles.HamburgerMenuCenteredLine}>

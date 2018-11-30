@@ -4,12 +4,19 @@ import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native
 export const styles = StyleSheet.create({
   //Font and text styles:
   EventTitleBox: {
-      left: 15,
+      marginLeft: 15,
+      marginTop: 15,
   },
   EventTitle: {
     fontFamily: 'Roboto',
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  ConfirmEventTitle: {
+    fontFamily: 'Roboto',
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#a4c537',
   },
   BodyText: {
     fontFamily: 'Roboto',
@@ -18,12 +25,19 @@ export const styles = StyleSheet.create({
   BodyTextGray: {
     fontFamily: 'Roboto',
     fontSize: 14,
-    //color: #8D8D8D, //light gray
+    color: '#8D8D8D', //light gray
   },
   NameText: {
     fontFamily: 'Roboto',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+
+  //Header Styles
+  HeaderLogo: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 
   //Map Styles
@@ -42,6 +56,69 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+
+  // Hamburger Menu Styles
+  HamburgerMenuContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  HamburgerMenuButtonContainer: {
+    flexDirection: 'row',
+    height: 40,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 3,
+    marginBottom: 3,
+  },
+  HamburgerMenuCenteredLine: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  HamburgerMenuProfilePic: {
+    height: 150,
+    width: 150,
+    borderRadius: 75,
+    borderColor: '#2AACAD',
+    borderWidth: 7,
+  },
+  HamburgerMenuIcon: {
+    height: 28,
+    width: 28,
+    marginTop: 6,
+  },
+  HamburgerMenuButton: {
+    fontFamily: 'Roboto',
+    fontSize: 18,
+  },
+
+  //Inbox Styles
+  InboxLineItemContainer: {
+
+  },
+  InboxLineItem: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 50,
+    padding: 10,
+    paddingBottom: 60,
+    borderWidth: 1,
+    borderColor: '#E5E5E5',
+  },
+  InboxSummaryText: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    height: 50,
+    marginLeft: 10,
+  },
+  ArrowRight: {
+    width:24*0.6,
+    height:39*0.6,
+    marginTop: (70-39*0.6)*0.5-10,
+    marginLeft: 10,
   },
 
 //General Styles
@@ -64,13 +141,16 @@ export const styles = StyleSheet.create({
     top: 15,
   },
   EventDetails: {
-    left: 15,
-    top: 30,
-    height: 140,
+    marginLeft: 15,
+    marginTop: 30,
+    height: 120,
+  },
+  EventDetail: {
     flexDirection: 'row',
+    marginTop: 15,
+    
   },
   EventAttendeesBox: {
-    left: 25,
     top: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -83,19 +163,33 @@ export const styles = StyleSheet.create({
     marginRight: 30,
     height: 140,
   },
+  SpotsBox: {
+      marginLeft: 25,
+      marginBottom: 20,
+  },
+  EventDetailIconBox: {
+      marginRight: 10,
+      marginTop: 5,
+      height: 30,
+      width: 30,
+  },
+  EventDetailIcon: {
+      height: 30,
+      width: 30,
+  },
 
   //Button Styles
   EventButtonBox: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginLeft: 30,
-    marginRight: 30,
+    marginLeft: 15,
+    marginRight: 15,
   },
   AttendButton: {
       backgroundColor: '#A4C537',
       alignItems: 'center',
       borderRadius: 10,
-      
+
   },
   EventButton: {
     height: 38,

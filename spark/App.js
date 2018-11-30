@@ -17,8 +17,8 @@ import { EventPage } from './components/EventPage';
 import { HostEvent } from './components/HostEvent';
 import { HamburgerMenuContents } from './components/HamburgerMenuContents';
 import { Inbox } from './components/Inbox';
-import { MessageScreen } from './components/MessageScreen';
 import { EmptyScreen } from './components/EmptyScreen';
+import { AttendConfirmation } from './components/AttendConfirmation';
 
 const store = createStore(
   (state = {events: [], users: []}, action) => {
@@ -36,18 +36,6 @@ const store = createStore(
           events: state.events,
           users: [...state.users, action.user],
         }
-      case 'READ_MESSAGE':
-        const newUsers = state.users.map((user) => {
-          if (user.key === action.user.key) {
-            user.conversation.unread = false;
-          } else {
-            return user
-          }
-        });
-        return {
-          events: state.events,
-          users: newUsers,
-        };
       default:
         return state;
     }
@@ -58,24 +46,15 @@ const store = createStore(
 store.dispatch({ type: 'ADD_USER', user: {
   name: 'Zack Cinquini',
   icon: require('./assets/zack.jpeg'),
-  conversation: {
-    unread: true,
-    messages: [
-      [true, 'message', 'Hi Zack! Are there any contact improv workshops soon?'],
-      [false,  'message', 'Yes! One sec let me invite you'],
-      [false,  'invite', 'Painting Workshop'],
-    ],
-  }
+  conversation: [
+  ]
 }});
 store.dispatch({ type: 'ADD_USER', user: {
   name: 'Bianca Yu',
   icon: require('./assets/zack.jpeg'),
-  conversation: {
-    unread: false,
-    messages: [
-      [false, 'message', 'Do you want to go to the painting workshop this week?']
-    ],
-  }
+  conversation: [
+    (false, "Do you want to go to the painting workshop this week?")
+  ]
 }});
 
 {/*Set up default events*/}
@@ -116,7 +95,7 @@ const AppNavigator = createStackNavigator(
     HostEvent: {screen: HostEvent},
     EmptyScreen: {screen: EmptyScreen},
     Inbox: {screen: Inbox},
-    Message: {screen: MessageScreen},
+    AttendConfirmation: {screen: AttendConfirmation},
   },
   {
     initialRouteName: "Home",

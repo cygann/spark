@@ -8,12 +8,17 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
 import { createStore } from "redux";
 
 import { styles } from './components/Styles';
 import { HomeScreen } from './components/HomeScreen';
-import { EventPage } from './components/EventPage'
+import { EventPage } from './components/EventPage';
+import { HostEvent } from './components/HostEvent';
+import { HamburgerMenuContents } from './components/HamburgerMenuContents';
+import { Inbox } from './components/Inbox';
+import { EmptyScreen } from './components/EmptyScreen';
+import { AttendConfirmation } from './components/AttendConfirmation';
 
 const store = createStore(
   (state = {events: [], users: []}, action) => {
@@ -41,10 +46,20 @@ const store = createStore(
 store.dispatch({ type: 'ADD_USER', user: {
   name: 'Zack Cinquini',
   icon: require('./assets/zack.jpeg'),
+  conversation: [
+  ]
+}});
+store.dispatch({ type: 'ADD_USER', user: {
+  name: 'Bianca Yu',
+  icon: require('./assets/zack.jpeg'),
+  conversation: [
+    (false, "Do you want to go to the painting workshop this week?")
+  ]
 }});
 
 {/*Set up default events*/}
 const zackKey = store.getState().users[0].key;
+
 store.dispatch({ type: 'ADD_EVENT', event: {
   title: 'Painting Workshop',
   hostKey: zackKey,
@@ -56,6 +71,7 @@ store.dispatch({ type: 'ADD_EVENT', event: {
     latitude: 37.425054,
     longitude:  -122.161875
   },
+  status: 'standard',
 }});
 store.dispatch({ type: 'ADD_EVENT', event: {
   title: 'Botanical Art Workshop',
@@ -68,6 +84,7 @@ store.dispatch({ type: 'ADD_EVENT', event: {
     latitude: 37.435866,
     longitude: -122.171112
   },
+  status: 'standard',
 }});
 
 //App Navigator to move between screens
@@ -75,9 +92,14 @@ const AppNavigator = createStackNavigator(
   {
     Home: {screen: HomeScreen},
     Event: {screen: EventPage},
+    HostEvent: {screen: HostEvent},
+    EmptyScreen: {screen: EmptyScreen},
+    Inbox: {screen: Inbox},
+    AttendConfirmation: {screen: AttendConfirmation},
   },
   {
     initialRouteName: "Home",
+    headerBackTitleVisible: false,
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#2AACAD'
@@ -92,7 +114,16 @@ const AppNavigator = createStackNavigator(
   }
 );
 
-const AppContainer = createAppContainer(AppNavigator);
+export const HamburgerMenuNavigator = createDrawerNavigator(
+  {
+    Home: {screen: AppNavigator},
+  },
+  {
+     contentComponent: HamburgerMenuContents,
+  }
+);
+
+const AppContainer = createAppContainer(HamburgerMenuNavigator);
 
 export default class App extends React.Component {
   render() {

@@ -55,7 +55,7 @@ export class HomeScreen extends Component {
             activeOpacity={0.75}
             onPress={() => {navigation.openDrawer()}}>
             <Image
-              source={require('../assets/MailIcon.png')}
+              source={require('../assets/HamburgerIcon.png')}
               style={{
                 height: 24*0.8,
                 width: 35*0.8,
