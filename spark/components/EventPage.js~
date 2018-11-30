@@ -47,7 +47,7 @@ export class EventPage extends Component {
                 <View style={styles.EventDeatilIconBox}>
                     <Image source={require('../assets/date_icon.png')} style={styles.EventDetailIcon} />
                 </View>
-                <View style={{marginLeft:15}}>
+                <View style={{marginLeft:10}}>
                     <Text style={styles.BodyText}>Tuesday, November 6th</Text>
                     <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
                 </View>
