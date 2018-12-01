@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 
+import { connect } from 'react-redux';
+
 import Map from './Map';
 import { styles } from './Styles';
 
@@ -31,8 +33,9 @@ class LogoTitle extends Component {
 }
 
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
-export default class HomeScreen extends Component {
+class HomeScreen extends Component {
   static navigationOptions = ({navigation}) => {
+    const notifications = navigation.getParam('unreadCount');
     return {
       title: 'spark',
       headerTitle: <LogoTitle/>,
@@ -48,6 +51,12 @@ export default class HomeScreen extends Component {
                 marginRight: 10,
               }}
             />
+            {notifications > 0
+              ? <View style={styles.HomeScreenUnreadBadge}>
+                  <Text style={styles.HomeScreenUnreadBadgeNumber}>{notifications}</Text>
+                </View>
+              : <View/>
+            }
         </TouchableOpacity>
       ),
       headerLeft: (
@@ -66,8 +75,16 @@ export default class HomeScreen extends Component {
       ),
     };
   }
-
+  lastUnreadCount = -1;
   render() {
+    let unreadCount = 0;
+    this.props.users.forEach((user) => {
+      if (user.conversation.unread) unreadCount+=1;
+    })
+    if (unreadCount!=this.lastUnreadCount) {
+      this.lastUnreadCount = unreadCount;
+      this.props.navigation.setParams({unreadCount: unreadCount});
+    }
     return (
       <View style={styles.mapcontainer}>
         <Map nav={this.props.navigation}/>
@@ -75,3 +92,17 @@ export default class HomeScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    events: state.events.events,
+    users: state.users.users,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

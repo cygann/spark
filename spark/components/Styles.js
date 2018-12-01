@@ -128,7 +128,25 @@ export const styles = StyleSheet.create({
     borderColor: '#fff',
     backgroundColor: '#2AACAD'
   },
-
+  HomeScreenUnreadBadge: {
+    position: 'absolute',
+    top: -5,
+    right: 5,
+    height: 16,
+    width: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#2AACAD',
+    backgroundColor: '#F64444',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  HomeScreenUnreadBadgeNumber: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#fff', //light gray
+  },
 //General Styles
   MapPreviewBox: {
     height: 150,
@@ -156,7 +174,7 @@ export const styles = StyleSheet.create({
   EventDetail: {
     flexDirection: 'row',
     marginTop: 15,
-    
+
   },
   EventAttendeesBox: {
     top: 0,

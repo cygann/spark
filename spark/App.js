@@ -92,7 +92,7 @@ class App extends React.Component {
         name: 'Bianca Yu',
         icon: require('./assets/zack.jpeg'),
         conversation: {
-          unread: false,
+          unread: true,
           messages: [
             [false, 'message', 'Do you want to go to the painting workshop this week?']
           ],
