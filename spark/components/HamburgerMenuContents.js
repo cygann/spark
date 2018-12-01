@@ -33,7 +33,7 @@ class HamburgerMenuBlankSpace extends Component {
   }
 }
 
-export class HamburgerMenuContents extends Component {
+export default class HamburgerMenuContents extends Component {
   render() {
     return (
       <View style={styles.HamburgerMenuContainer}>

@@ -4,7 +4,7 @@ import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native
 import { styles } from './Styles';
 
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
-export class MessageScreen extends Component {
+export default class MessageScreen extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       title: navigation.getParam('user', {name: 'Name'}).name,

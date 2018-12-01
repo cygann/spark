@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 
+import { connect } from 'react-redux';
+import { setUnread } from '../actions/User';
+
 import { styles } from './Styles';
 
 class InboxLineItem extends Component {
@@ -8,14 +11,16 @@ class InboxLineItem extends Component {
     const user = this.props.user;
     const unread = user.conversation.unread
     const messages = user.conversation.messages;
-    console.log(user);
     if (!messages || !messages[0]) {
       return(<View/>);
     } else {
       return (
         <TouchableOpacity
           activeOpacity={0.75}
-          onPress={() => {this.props.nav.navigate('Message', {user: user})}}
+          onPress={() => {
+            this.props.setUnread(user, false);
+            this.props.nav.navigate('Message', {user: user});
+          }}
           style={styles.InboxLineItem}
         >
           <View>
@@ -41,23 +46,41 @@ class InboxLineItem extends Component {
 }
 
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
-export class Inbox extends Component {
+class Inbox extends Component {
   static navigationOptions = {
     title: 'Inbox',
   };
 
   render() {
-    const myStore = this.props.screenProps.store;
+    console.log(this.props);
     return (
       <View style={styles.InboxLineItemContainer}>
-      {myStore.getState().users.map(user => (
+      {this.props.users.map(user => (
         <InboxLineItem
           key={user.key}
           nav={this.props.navigation}
           user={user}
+          setUnread={this.props.setUnread}
         />
       ))}
       </View>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    events: state.events.events,
+    users: state.users.users,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUnread: (user, status) => {
+      dispatch(setUnread(user, status))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inbox)

@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 
-import { Map } from './Map';
+import { connect } from 'react-redux';
+import { setAttending } from '../actions/Event';
+
+import Map from './Map';
 import { styles } from './Styles';
 
 //Event page that shows event details
-export class EventPage extends Component {
+class EventPage extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       title: navigation.getParam('event', {title: 'Event Page'}).title,
@@ -15,12 +18,12 @@ export class EventPage extends Component {
   render(){
     const nav = this.props.navigation;
     const event = nav.getParam('event', {});
-    const myStore = this.props.screenProps.store;
+    event.host = this.props.users.find((user) => user.key == event.hostKey);
 
     return (
       <ScrollView>
         <View style={styles.MapPreviewBox}>
-          <Map store={myStore}/>
+          <Map/>
         </View>
         <View style={styles.EventTitleBox}>
           <Text style={styles.EventTitle}>{event.title}</Text>
@@ -32,7 +35,7 @@ export class EventPage extends Component {
             <Text style={styles.NameText}>{event.host.name}</Text>
           </View>
         </View>
-        <View style={styles.EventDetails}>     
+        <View style={styles.EventDetails}>
           <View>
             <View style={styles.EventDetail}>
                 <View style={styles.EventDetailIconBox}>
@@ -79,8 +82,11 @@ export class EventPage extends Component {
             <TouchableOpacity
                 activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
-                onPress={() => {nav.navigate('AttendConfirmation', {event: event})}}>
-                
+                onPress={() => {
+                  this.props.setAttending(event, 'attending')
+                  nav.navigate('AttendConfirmation', {event: event})}
+                }>
+
                 <Image style={styles.EventButton} source={event.status === 'attending' ?
                     require('../assets/unattend_button.png') : require('../assets/attend_button.png') } />
                 {/*<Image style={styles.EventButton} source={require('../assets/attend_button.png')} />*/}
@@ -97,3 +103,20 @@ export class EventPage extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    events: state.events.events,
+    users: state.users.users,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setAttending: (event, status) => {
+      dispatch(setAttending(event, status))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventPage)

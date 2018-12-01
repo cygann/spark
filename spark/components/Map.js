@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import MapView from 'react-native-maps';
 
+import { connect } from 'react-redux';
+
 import { styles } from './Styles';
 
-export class Map extends Component {
+class Map extends Component {
   constructor(props) {
     super(props);
   }
@@ -20,7 +22,7 @@ export class Map extends Component {
           longitudeDelta: 0.0421/1.5,
         }}
       >
-      {this.props.store.getState().events.map(event => (
+      {this.props.events.map(event => (
         <MapView.Marker
           coordinate={event.coordinates}
           title={event.title}
@@ -36,3 +38,12 @@ export class Map extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    events: state.events.events,
+    users: state.users.users,
+  }
+};
+
+export default connect(mapStateToProps)(Map)
