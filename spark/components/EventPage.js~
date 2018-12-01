@@ -39,8 +39,8 @@ export class EventPage extends Component {
                     <Image source={require('../assets/location_icon.png')} style={styles.EventDetailIcon} />
                 </View>
                 <View>
-                    <Text style={styles.BodyText}>217 Coastal St.</Text>
-                    <Text style={styles.BodyText}>Dana Point, CA</Text>
+                    <Text style={styles.BodyText}>{event.addr1}</Text>
+                    <Text style={styles.BodyText}>{event.addr2}</Text>
                 </View>
             </View>
             <View style={styles.EventDetail}>
@@ -48,8 +48,8 @@ export class EventPage extends Component {
                     <Image source={require('../assets/date_icon.png')} style={styles.EventDetailIcon} />
                 </View>
                 <View style={{marginLeft:10}}>
-                    <Text style={styles.BodyText}>Tuesday, November 6th</Text>
-                    <Text style={styles.BodyText}>6:30pm - 8:30pm</Text>
+                    <Text style={styles.BodyText}>{event.date}</Text>
+                    <Text style={styles.BodyText}>{event.time}</Text>
                 </View>
             </View>
           </View>
