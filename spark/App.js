@@ -99,6 +99,18 @@ class App extends React.Component {
         }
       });
 
+      this.props.addUser({
+          key: 3,
+          name: 'Judy Smith',
+          icon: require('./assets/judy.jpg'),
+          conversation: {
+              unread: false,
+              messages: [
+                  [false, 'message', 'Hi Darling! I hope you see my botanical art workshop!'],
+              ],
+            }
+        });
+
       this.props.addEvent({
         title: 'Painting Workshop',
         hostKey: 1,
@@ -110,11 +122,15 @@ class App extends React.Component {
           latitude: 37.425054,
           longitude:  -122.161875
         },
+        about: 'Come join us for an evening of casual painting! I like to host these weekly on Tuesday nights. Each week, we have a different painting theme, where we all paint the same landscape, Bob Ross style almost! All materials are provided, so don’t worry about having to bring anything.',
         status: 'standard',
+        capacity: 20,
+        attending: 8,
       });
+
       this.props.addEvent({
         title: 'Botanical Art Workshop',
-        hostKey: 1,
+        hostKey: 3,
         addr1: '673 Escondido Rd',
         addr2: 'Stanford, CA 94305',
         date: 'Saturday, December 8th',
@@ -123,7 +139,10 @@ class App extends React.Component {
           latitude: 37.435866,
           longitude: -122.171112
         },
+        about: 'Check out this amazing opportunity to learn about the world of Botanical Art! This is a way to connect with the natural world while creating beautiful watercolor paintings of plants. There is an emphasis on botanical accuracy and detail with botanical art, which we will learn how to approach!',
         status: 'standard',
+        capacity: 15,
+        attending: 8,
       });
     }
     return <AppContainer/>;

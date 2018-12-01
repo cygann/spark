@@ -59,7 +59,7 @@ class EventPage extends Component {
         </View>
           <View style={styles.SpotsBox}>
             <View>
-                  <Text style={styles.BodyText}>10/16 Spots Filled</Text>
+                  <Text style={styles.BodyText}>{event.attending}/{event.capacity} Spots Filled</Text>
             </View>
             <View style={styles.EventAttendeesBox}>
                   <Image source={require('../assets/landay.jpg')} style={styles.UserProfileImageSmall} />
@@ -76,7 +76,7 @@ class EventPage extends Component {
           <Text style={styles.NameText, {marginLeft: 15}}>About</Text>
         </View>
         <View style={styles.EventAbout}>
-          <Text style={styles.BodyText}>Come join us for an evening of casual painting! I like to host these weekly on Tuesday nights. Each week, we have a different painting theme, where we all paint the same landscape, Bob Ross style almost! All materials are provided, so don’t worry about having to bring anything.</Text>
+          <Text style={styles.BodyText}>{event.about}</Text>
         </View>
         <View style={styles.EventButtonBox}>
             <TouchableOpacity
