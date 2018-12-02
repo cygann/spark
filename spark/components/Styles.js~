@@ -93,9 +93,6 @@ export const styles = StyleSheet.create({
   },
 
   //Inbox Styles
-  InboxLineItemContainer: {
-
-  },
   InboxLineItem: {
     flex: 1,
     flexDirection: 'row',
@@ -120,7 +117,36 @@ export const styles = StyleSheet.create({
     marginTop: (70-39*0.6)*0.5-10,
     marginLeft: 10,
   },
-
+  InboxUnreadBadge: {
+    position: 'absolute',
+    top: 1,
+    left: 1,
+    height: 12,
+    width: 12,
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: '#fff',
+    backgroundColor: '#2AACAD'
+  },
+  HomeScreenUnreadBadge: {
+    position: 'absolute',
+    top: -5,
+    right: 5,
+    height: 16,
+    width: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#2AACAD',
+    backgroundColor: '#F64444',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  HomeScreenUnreadBadgeNumber: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#fff', //light gray
+  },
 //General Styles
   MapPreviewBox: {
     height: 150,
@@ -148,7 +174,7 @@ export const styles = StyleSheet.create({
   EventDetail: {
     flexDirection: 'row',
     marginTop: 15,
-    
+
   },
   EventAttendeesBox: {
     top: 0,
@@ -194,5 +220,16 @@ export const styles = StyleSheet.create({
   EventButton: {
     height: 38,
     width: 160,
+  },
+
+
+  //Host Form Styles
+  HostHeaderBox: {
+      alignItems: 'center',
+  },
+  SubmitFormBox: {
+      height: 41,
+      width: 100,
+      alignItems: 'center',
   },
 });

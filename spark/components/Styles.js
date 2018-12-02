@@ -221,4 +221,14 @@ export const styles = StyleSheet.create({
     height: 38,
     width: 160,
   },
+
+
+  //Host Form Styles
+  HostHeaderBox: {
+      alignItems: 'center',
+  },
+  SubmitFormButton: {
+      height: 41,
+      width: 100,
+  },
 });

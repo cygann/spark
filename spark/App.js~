@@ -7,12 +7,14 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, createAppContainer } from "react-navigation";
 
 import { connect } from 'react-redux';
 import { addEvent } from './actions/Event';
 import { addUser } from './actions/User';
+
+import t from 'tcomb-form-native';
 
 import { styles } from './components/Styles';
 import HomeScreen from './components/HomeScreen';
@@ -108,7 +110,8 @@ class App extends React.Component {
               messages: [
                   [false, 'message', 'Hi Darling! I hope you see my botanical art workshop!'],
               ],
-      });
+            }
+        });
 
       this.props.addEvent({
         title: 'Painting Workshop',

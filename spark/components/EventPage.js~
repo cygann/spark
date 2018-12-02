@@ -59,7 +59,7 @@ class EventPage extends Component {
         </View>
           <View style={styles.SpotsBox}>
             <View>
-                  <Text style={styles.BodyText}>{event.attendees}/{event.capacity} Spots Filled</Text>
+                  <Text style={styles.BodyText}>{event.attending}/{event.capacity} Spots Filled</Text>
             </View>
             <View style={styles.EventAttendeesBox}>
                   <Image source={require('../assets/landay.jpg')} style={styles.UserProfileImageSmall} />
