@@ -38,6 +38,7 @@ const AppNavigator = createStackNavigator(
     Inbox: {screen: Inbox},
     Message: {screen: MessageScreen},
     AttendConfirmation: {screen: AttendConfirmation},
+    HostConfirmation: {screen: HostConfirmation},
   },
   {
     initialRouteName: "Home",
