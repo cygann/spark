@@ -72,6 +72,7 @@ const formOptions = {
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
 class HostEvent extends Component {
   static navigationOptions = {
+    title: 'Create an Event',
     drawerLabel: 'Host an Event',
   };
 
@@ -103,9 +104,6 @@ class HostEvent extends Component {
   render() {
     return (
       <ScrollView>
-        <View style={styles.HostHeaderBox}>
-            <Text style={styles.EventTitle}>Create an Event</Text>
-        </View>
         <View style={styles.FormContainer}>
             <Form type={UserEvent} ref="form" options={formOptions}/>
         </View>

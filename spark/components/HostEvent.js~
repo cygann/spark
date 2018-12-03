@@ -85,8 +85,8 @@ class HostEvent extends Component {
           hostKey: 0,
           addr1: value.addr1,
           addr2: value.addr2,
-          date: value.date,
-          time: value.startTime + ' - ' + value.endTime,
+          date: moment(value.date).format('dddd, MMMM Do'),
+          time: moment(value.startTime).format('h:mm a') + ' - ' + moment(value.endTime).format('h:mm a'),
           coordinates: {
               latitude: Math.random() * (37.419053 - 34.434355) + 34.34355,
               longitude: Math.random() * (-122.160016 - -122.181045) + -122.160016
