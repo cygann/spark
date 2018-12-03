@@ -17,6 +17,11 @@ install the following packaged with npm:
     npm install --save redux
     npm install --save tcomb-form-native
     npm install --save react-native-maps
+<<<<<<< HEAD
+    npm install --save moment
+=======
+    npm install --save react-native-gifted-chat
+>>>>>>> 93f1751372fe2a8e196e192ed42a2ff82702bf33
 
 Then link all dependencies:
     react-native link
