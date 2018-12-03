@@ -15,6 +15,7 @@ import { addEvent } from './actions/Event';
 import { addUser } from './actions/User';
 
 import t from 'tcomb-form-native';
+import moment from 'moment';
 
 import { styles } from './components/Styles';
 import HomeScreen from './components/HomeScreen';
