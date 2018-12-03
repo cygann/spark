@@ -78,6 +78,17 @@ class App extends React.Component {
       this.first = false;
 
       const userKey = 0; // Sarah Caballo
+      const userPic = require('./assets/sarah.jpg');
+      this.props.addUser({
+          key: userKey,
+          name: 'Sarah Caballo',
+          icon: userPic,
+          conversation: {
+            unread: false,
+            messages: [],
+          },
+      });
+
       const zackKey = 1;
       const zackIcon = require('./assets/zack.jpeg');
       this.props.addUser({

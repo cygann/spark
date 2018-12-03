@@ -84,6 +84,7 @@ class HomeScreen extends Component {
     if (unreadCount!=this.lastUnreadCount) {
       this.lastUnreadCount = unreadCount;
       this.props.navigation.setParams({unreadCount: unreadCount});
+      console.log(this.props);
     }
     return (
       <View style={styles.mapcontainer}>

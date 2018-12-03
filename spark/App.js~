@@ -15,6 +15,7 @@ import { addEvent } from './actions/Event';
 import { addUser } from './actions/User';
 
 import t from 'tcomb-form-native';
+import moment from 'moment';
 
 import { styles } from './components/Styles';
 import HomeScreen from './components/HomeScreen';
@@ -75,40 +76,92 @@ class App extends React.Component {
     if (this.first) {
       // DEFAULT USERS
       this.first = false;
+
+      const userKey = 0; // Sarah Caballo
+      const userPic = require('../assets/sarah.jpg');
       this.props.addUser({
-        key: 1,
+          key: userKey,
+          name: 'Sarah Caballo',
+          icon: userPic,
+          conversation: {
+            unread: false,
+            messages: [],
+          },
+      });
+
+      const zackKey = 1;
+      const zackIcon = require('./assets/zack.jpeg');
+      this.props.addUser({
+        key: zackKey,
         name: 'Zack Cinquini',
-        icon: require('./assets/zack.jpeg'),
+        icon: zackIcon,
         conversation: {
           unread: true,
           messages: [
-            [true, 'message', 'Hi Zack! Are there any contact improv workshops soon?'],
-            [false,  'message', 'Yes! One sec let me invite you'],
-            [false,  'invite', 'Painting Workshop'],
+            {
+              _id: '2',
+              text: 'Yes! One sec let me invite you',
+              createdAt: new Date(),
+              user: {
+                _id: zackKey,
+                name: 'Zack Cinquini',
+                avatar: zackIcon,
+              },
+            },
+            {
+              _id: '1',
+              text: 'Hi Zack! Are there any painging workshops coming up soon?',
+              createdAt: new Date(),
+              user: {
+                _id: userKey,
+              },
+            },
           ],
         }
       });
 
+      const biancaIcon = require('./assets/zack.jpeg');
+      const biancaKey = 2;
       this.props.addUser({
-        key: 2,
+        key: biancaKey,
         name: 'Bianca Yu',
-        icon: require('./assets/zack.jpeg'),
+        icon: biancaIcon,
         conversation: {
           unread: true,
           messages: [
-            [false, 'message', 'Do you want to go to the painting workshop this week?']
+            {
+              _id: '2',
+              text: 'Do you want to go to the painting workshop this week?',
+              createdAt: new Date(),
+              user: {
+                _id: biancaKey,
+                name: 'Zack Cinquini',
+                avatar: biancaIcon,
+              },
+            },
           ],
         }
       });
 
+      const judyIcon = require('./assets/judy.jpg');
+      const judyKey = 3
       this.props.addUser({
-          key: 3,
+          key: judyKey,
           name: 'Judy Smith',
-          icon: require('./assets/judy.jpg'),
+          icon: judyIcon,
           conversation: {
               unread: false,
               messages: [
-                  [false, 'message', 'Hi Darling! I hope you see my botanical art workshop!'],
+                {
+                  _id: '2',
+                  text: 'Hi Darling! I hope you see my botanical art workshop!',
+                  createdAt: new Date(),
+                  user: {
+                    _id: judyKey,
+                    name: 'Zack Cinquini',
+                    avatar: judyIcon,
+                  },
+                },
               ],
             }
         });

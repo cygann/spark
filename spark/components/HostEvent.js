@@ -6,6 +6,9 @@ import { styles } from './Styles';
 import t from 'tcomb-form-native';
 import moment from 'moment';
 
+import { connect } from 'react-redux';
+import { addEvent } from '../actions/Event';
+
 const Form = t.form.Form;
 
 const UserEvent = t.struct({
@@ -14,6 +17,8 @@ const UserEvent = t.struct({
     date: t.Date,
     startTime: t.Date,
     endTime: t.Date,
+    addr1: t.String,
+    addr2: t.String,
     
 });
 
@@ -51,20 +56,48 @@ const formOptions = {
                 format:(date) => moment(date).format('h:mm a')
             }
         },
+        addr1: {
+            label: 'Address Line 1',
+            error: 'Please enter the first address line for your event.',
+        },
+        addr2: {
+            label: 'Address Line 2',
+            error: 'Please enter the second address line for your event.',
+        },
         
     },
-    auto: 'placeholders'
 
 };
 
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
-export default class HostEvent extends Component {
+class HostEvent extends Component {
   static navigationOptions = {
     drawerLabel: 'Host an Event',
   };
 
   handleSubmit = () => {
-      const value = this._form.getValue();
+      const value = this.refs.form.getValue();
+      if(value) {
+        console.log(value);
+      }
+      this.props.addEvent({
+          title: value.title,
+          hostKey: 0,
+          addr1: value.addr1,
+          addr2: value.addr2,
+          date: moment(value.date).format('dddd, MMMM Do'),
+          time: moment(value.startTime).format('h:mm a') + ' - ' + moment(value.endTime).format('h:mm a'),
+          coordinates: {
+              latitude: Math.random() * (37.419053 - 34.434355) + 34.34355,
+              longitude: Math.random() * (-122.160016 - -122.181045) + -122.160016
+          },
+          about: value.about,
+          status: 'hosting',
+          capacity: 20,
+          attending: 0
+      });
+      console.log(this.props)
+      
   }
 
   render() {
@@ -74,22 +107,37 @@ export default class HostEvent extends Component {
             <Text style={styles.EventTitle}>Create an Event</Text>
         </View>
         <View style={styles.FormContainer}>
-            <Form type={UserEvent} options={formOptions}/>
+            <Form type={UserEvent} ref="form" options={formOptions}/>
         </View>
         <View style={{alignItems: 'center'}}>
             <TouchableOpacity
                 activeOpacity={0.75}
                 buttonStyle={styles.SubmitFormButton}
                 onPress={() => {
-                  this.handleSubmmit
-                  this.props.setAttending(event, 'attending')
-                  nav.navigate('AttendConfirmation', {event: event})}
-                }>
-
-                <Image style={styles.SubmitFormButton} source={require('../assets/done_button_green.png') } />
+                  this.handleSubmit()}
+                } >
+                <Image style={styles.SubmitFormButton} source={require('../assets/done_button_green.png')} />
             </TouchableOpacity>
         </View>
       </ScrollView>
     );
   }
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    events: state.events.events,
+    users: state.users.users,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addEvent: (event) => {
+      dispatch(addEvent(event))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HostEvent)
