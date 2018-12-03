@@ -76,6 +76,9 @@ class App extends React.Component {
       // DEFAULT USERS
       this.first = false;
 
+      const paintingWorkshopKey = 1;
+      const botanicalArtKey = 2;
+
       const userKey = 0; // Sarah Caballo
       const zackKey = 1;
       const zackIcon = require('./assets/zack.jpeg');
@@ -86,6 +89,30 @@ class App extends React.Component {
         conversation: {
           unread: true,
           messages: [
+            // {
+            //   _id: '3',
+            //   image: zackIcon,
+            //   text: 'Painting Workshop invitation',
+            //   createdAt: new Date(),
+            //   user: {
+            //     _id: zackKey,
+            //     name: 'Zack Cinquini',
+            //     avatar: zackIcon,
+            //   },
+            //   eventKey: paintingWorkshopKey,
+            // },
+            {
+              _id: '3',
+              text: 'Painting Workshop invitation',
+              createdAt: new Date(),
+              user: {
+                _id: zackKey,
+                name: 'Zack Cinquini',
+                avatar: zackIcon,
+              },
+              eventKey: paintingWorkshopKey,
+              // Any additional custom parameters are passed through
+            },
             {
               _id: '2',
               text: 'Yes! One sec let me invite you',
@@ -156,6 +183,7 @@ class App extends React.Component {
 
       this.props.addEvent({
         title: 'Painting Workshop',
+        key: paintingWorkshopKey,
         hostKey: 1,
         addr1: 'Arizona Garden',
         addr2: 'Stanford, CA 94305',
@@ -173,6 +201,7 @@ class App extends React.Component {
 
       this.props.addEvent({
         title: 'Botanical Art Workshop',
+        key: botanicalArtKey,
         hostKey: 3,
         addr1: '673 Escondido Rd',
         addr2: 'Stanford, CA 94305',

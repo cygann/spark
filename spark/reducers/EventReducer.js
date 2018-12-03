@@ -8,7 +8,7 @@ const initialState = {
 const eventReducer = (state = initialState, action) => {
   switch(action.type) {
     case ADD_EVENT:
-      action.event.key = Math.random();
+      if (!action.event.key) action.event.key = Math.random();
       return {
         events: [...state.events, action.event],
       };

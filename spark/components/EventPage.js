@@ -23,7 +23,7 @@ class EventPage extends Component {
     return (
       <ScrollView>
         <View style={styles.MapPreviewBox}>
-          <Map/>
+          <Map nav={nav} zoom={10} center={event.coordinates}/>
         </View>
         <View style={styles.EventTitleBox}>
           <Text style={styles.EventTitle}>{event.title}</Text>
@@ -83,8 +83,8 @@ class EventPage extends Component {
                 activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
                 onPress={() => {
-                  this.props.setAttending(event, 'attending')
-                  nav.navigate('AttendConfirmation', {event: event})}
+                  this.props.setAttending(event, event.status === 'attending' ? 'standard' : 'attending');
+                  if (event.status === 'attending') nav.navigate('AttendConfirmation', {event: event})}
                 }>
 
                 <Image style={styles.EventButton} source={event.status === 'attending' ?
