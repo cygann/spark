@@ -90,18 +90,6 @@ class App extends React.Component {
         conversation: {
           unread: true,
           messages: [
-            // {
-            //   _id: '3',
-            //   image: zackIcon,
-            //   text: 'Painting Workshop invitation',
-            //   createdAt: new Date(),
-            //   user: {
-            //     _id: zackKey,
-            //     name: 'Zack Cinquini',
-            //     avatar: zackIcon,
-            //   },
-            //   eventKey: paintingWorkshopKey,
-            // },
             {
               _id: '3',
               text: 'Painting Workshop invitation',
@@ -112,7 +100,6 @@ class App extends React.Component {
                 avatar: zackIcon,
               },
               eventKey: paintingWorkshopKey,
-              // Any additional custom parameters are passed through
             },
             {
               _id: '2',
@@ -126,7 +113,7 @@ class App extends React.Component {
             },
             {
               _id: '1',
-              text: 'Hi Zack! Are there any painging workshops coming up soon?',
+              text: 'Hi Zack! Are there any painting workshops coming up soon?',
               createdAt: new Date(),
               user: {
                 _id: userKey,
