@@ -33,9 +33,9 @@ class InboxLineItem extends Component {
           <View style={styles.InboxSummaryText}>
             <Text style={styles.NameText}>{user.name}</Text>
             <Text style={styles.BodyTextGray}>
-              {messages[messages.length-1][2].length > 35
-                ? messages[messages.length-1][2].substr(0,35)+'...'
-                : messages[messages.length-1][2] }
+              {messages[0].text.length > 35
+                ? messages[0].text.substr(0,35)+'...'
+                : messages[0].text }
             </Text>
           </View>
           <Image source={require('../assets/ArrowRight.png')} style={styles.ArrowRight}/>
