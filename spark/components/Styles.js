@@ -225,10 +225,16 @@ export const styles = StyleSheet.create({
 
   //Host Form Styles
   HostHeaderBox: {
+      marginTop: 15,
       alignItems: 'center',
   },
   SubmitFormButton: {
       height: 41,
       width: 100,
   },
+  FormContainer: {
+      marginLeft: 25,
+      marginRight: 25,
+      marginTop: 15,
+  }
 });
