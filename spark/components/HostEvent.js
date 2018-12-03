@@ -102,6 +102,7 @@ class HostEvent extends Component {
   }
 
   render() {
+    const nav = this.props.navigation;
     return (
       <ScrollView>
         <View style={styles.FormContainer}>
@@ -112,7 +113,10 @@ class HostEvent extends Component {
                 activeOpacity={0.75}
                 buttonStyle={styles.SubmitFormButton}
                 onPress={() => {
-                  this.handleSubmit()}
+                  this.handleSubmit();
+                    {/* TODO: figure out event handling for event page navigation from confirmation
+                    nav.navigate('HostConfirmation', {event:event})*/} 
+                  }
                 } >
                 <Image style={styles.SubmitFormButton} source={require('../assets/done_button_green.png')} />
             </TouchableOpacity>

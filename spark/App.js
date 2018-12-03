@@ -26,6 +26,7 @@ import Inbox from './components/Inbox';
 import MessageScreen from './components/MessageScreen';
 import EmptyScreen from './components/EmptyScreen';
 import AttendConfirmation from './components/AttendConfirmation';
+import HostConfirmation from './components/HostConfirmation';
 
 //App Navigator to move between screens
 const AppNavigator = createStackNavigator(

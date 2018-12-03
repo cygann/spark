@@ -72,6 +72,7 @@ const formOptions = {
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
 class HostEvent extends Component {
   static navigationOptions = {
+    title: 'Create an Event',
     drawerLabel: 'Host an Event',
   };
 
@@ -101,11 +102,9 @@ class HostEvent extends Component {
   }
 
   render() {
+    const nav = this.props.navigation;
     return (
       <ScrollView>
-        <View style={styles.HostHeaderBox}>
-            <Text style={styles.EventTitle}>Create an Event</Text>
-        </View>
         <View style={styles.FormContainer}>
             <Form type={UserEvent} ref="form" options={formOptions}/>
         </View>
@@ -114,7 +113,8 @@ class HostEvent extends Component {
                 activeOpacity={0.75}
                 buttonStyle={styles.SubmitFormButton}
                 onPress={() => {
-                  this.handleSubmit()}
+                  this.handleSubmit();
+                  nav.navigate('HostConfirmation', {event:event})}
                 } >
                 <Image style={styles.SubmitFormButton} source={require('../assets/done_button_green.png')} />
             </TouchableOpacity>
