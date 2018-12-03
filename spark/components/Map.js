@@ -12,14 +12,15 @@ class Map extends Component {
   }
 
   render() {
+    const zoom = this.props.zoom ? this.props.zoom : 1;
     return (
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: 37.427398,
-          longitude:  -122.169622,
-          latitudeDelta: 0.0922/1.5,
-          longitudeDelta: 0.0421/1.5,
+          latitude: this.props.center ? this.props.center.latitude : 37.427398,
+          longitude:  this.props.center ? this.props.center.longitude : -122.169622,
+          latitudeDelta: 0.0922/1.5/zoom,
+          longitudeDelta: 0.0421/1.5/zoom,
         }}
       >
       {this.props.events.map(event => (

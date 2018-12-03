@@ -5,6 +5,7 @@ import { GiftedChat, Bubble } from 'react-native-gifted-chat'
 import { connect } from 'react-redux';
 import { addMessage } from '../actions/User';
 
+import InviteMap from './InviteMap';
 import { styles } from './Styles';
 
 //Main home page that displays the map. Inside of this screen is an instance of the Map class.
@@ -28,21 +29,33 @@ class MessageScreen extends Component {
     )
   }
 
+  renderCustomView = (props) => {
+    if (props.currentMessage.eventKey) {
+      return (
+        <View style={props.containerStyle}>
+            <InviteMap eventKey={props.currentMessage.eventKey} nav={this.props.navigation}/>
+        </View>
+      );
+    }
+    return null
+  }
+
   render() {
     const targetKey = this.props.navigation.getParam('user', {key: 'Key'}).key;
     const user = this.props.users.find((user) => user.key == targetKey);
     const messages = user.conversation.messages;
-    console.log(messages);
     return (
-      <GiftedChat
-        textInputProps={{autoFocus: true}}
-        messages={messages}
-        onSend={(messages) => this.props.addMessage(user, messages[0])}
-        user={{
-          _id: 0,
-        }}
-        renderBubble={this.renderBubble}
-      />
+      <View style={{height: 680}}>
+        <GiftedChat
+          messages={messages}
+          onSend={(messages) => this.props.addMessage(user, messages[0])}
+          user={{
+            _id: 0,
+          }}
+          renderCustomView={this.renderCustomView}
+          renderBubble={this.renderBubble}
+        />
+      </View>
     )
   }
 }
