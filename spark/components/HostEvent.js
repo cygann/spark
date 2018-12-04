@@ -19,7 +19,7 @@ const UserEvent = t.struct({
     endTime: t.Date,
     addr1: t.String,
     addr2: t.String,
-    
+
 });
 
 const formOptions = {
@@ -64,7 +64,7 @@ const formOptions = {
             label: 'Address Line 2',
             error: 'Please enter the second address line for your event.',
         },
-        
+
     },
 
 };
@@ -78,27 +78,22 @@ class HostEvent extends Component {
 
   handleSubmit = () => {
       const value = this.refs.form.getValue();
-      if(value) {
-        console.log(value);
-      }
       this.props.addEvent({
-          title: value.title,
-          hostKey: 0,
-          addr1: value.addr1,
-          addr2: value.addr2,
-          date: moment(value.date).format('dddd, MMMM Do'),
-          time: moment(value.startTime).format('h:mm a') + ' - ' + moment(value.endTime).format('h:mm a'),
-          coordinates: {
-              latitude: Math.random() * (37.419053 - 34.434355) + 34.34355,
-              longitude: Math.random() * (-122.160016 - -122.181045) + -122.160016
-          },
-          about: value.about,
-          status: 'hosting',
-          capacity: 20,
-          attending: 0
-      });
-      console.log(this.props)
-      
+        title: value.title,
+        hostKey: 1,
+        addr1: value.addr1,
+        addr2: value.addr2,
+        date: moment(value.date).format('dddd, MMMM Do'),
+        time: moment(value.startTime).format('h:mm a') + ' - ' + moment(value.endTime).format('h:mm a'),
+        coordinates: {
+          latitude: Math.random() * (37.45289-37.402573) + 37.402573,
+          longitude: Math.random() * (-122.157452 - -122.185841) + -122.185841
+        },
+        about: value.about,
+        status: 'hosting',
+        capacity: 20,
+        attending: 0
+    });
   }
 
   render() {
@@ -115,7 +110,7 @@ class HostEvent extends Component {
                 onPress={() => {
                   this.handleSubmit();
                     {/* TODO: figure out event handling for event page navigation from confirmation
-                    nav.navigate('HostConfirmation', {event:event})*/} 
+                    nav.navigate('HostConfirmation', {event:event})*/}
                   }
                 } >
                 <Image style={styles.SubmitFormButton} source={require('../assets/done_button_green.png')} />
