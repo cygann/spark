@@ -95,7 +95,7 @@ class HostEvent extends Component {
           about: value.about,
           status: 'hosting',
           capacity: 20,
-          attending: 0
+          attending: 0,
       });
       console.log(this.props)
       

@@ -114,7 +114,9 @@ class HostEvent extends Component {
                 buttonStyle={styles.SubmitFormButton}
                 onPress={() => {
                   this.handleSubmit();
-                  nav.navigate('HostConfirmation', {event:event})}
+                    {/* TODO: figure out event handling for event page navigation from confirmation
+                    nav.navigate('HostConfirmation', {event:event})*/} 
+                  }
                 } >
                 <Image style={styles.SubmitFormButton} source={require('../assets/done_button_green.png')} />
             </TouchableOpacity>
