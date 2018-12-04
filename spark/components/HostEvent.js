@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { addEvent } from '../actions/Event';
 
 const Form = t.form.Form;
+navEvent = {};
 
 const UserEvent = t.struct({
     title: t.String,
@@ -74,11 +75,13 @@ class HostEvent extends Component {
   static navigationOptions = {
     title: 'Create an Event',
     drawerLabel: 'Host an Event',
-  };
+  }
 
   handleSubmit = () => {
       const value = this.refs.form.getValue();
-      this.props.addEvent({
+      //this.props.addEvent({
+      
+      navEvent = {
         title: value.title,
         hostKey: 1,
         addr1: value.addr1,
@@ -93,7 +96,11 @@ class HostEvent extends Component {
         status: 'hosting',
         capacity: 20,
         attending: 0
-    });
+      };
+
+      this.props.addEvent({
+        navEvent
+      });
   }
 
   render() {
@@ -109,8 +116,7 @@ class HostEvent extends Component {
                 buttonStyle={styles.SubmitFormButton}
                 onPress={() => {
                   this.handleSubmit();
-                    {/* TODO: figure out event handling for event page navigation from confirmation
-                    nav.navigate('HostConfirmation', {event:event})*/}
+                    nav.navigate('HostConfirmation', {event:navEvent})
                   }
                 } >
                 <Image style={styles.SubmitFormButton} source={require('../assets/done_button_green.png')} />
