@@ -14,10 +14,10 @@ export default class AttendConfirmation extends Component {
     const event = this.props.navigation.getParam('event');
 
     const hoorayText = "Hooray! You're going to";
-    const addr1 = "217 Coastal St.";
-    const addr2 = "Dana Point, CA";
-    const date = "Tuesday, November 6th";
-    const time = "6:30pm - 8:30pm";
+    const addr1 = event.addr1;
+    const addr2 = event.addr2;
+    const date = event.date;
+    const time = event.time;
 
     return(
       <View style={{alignItems: 'center'}}>

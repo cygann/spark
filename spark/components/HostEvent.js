@@ -98,9 +98,7 @@ class HostEvent extends Component {
         attending: 0
       };
 
-      this.props.addEvent({
-        navEvent
-      });
+      this.props.addEvent(navEvent);
   }
 
   render() {

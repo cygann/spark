@@ -116,7 +116,6 @@ class HostEvent extends Component {
                 buttonStyle={styles.SubmitFormButton}
                 onPress={() => {
                   this.handleSubmit();
-                    {/* TODO: figure out event handling for event page navigation from confirmation*/}
                     nav.navigate('HostConfirmation', {event:navEvent})
                   }
                 } >
