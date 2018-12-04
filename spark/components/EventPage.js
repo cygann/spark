@@ -18,8 +18,9 @@ class EventPage extends Component {
   render(){
     const nav = this.props.navigation;
     const event = nav.getParam('event', {});
-    event.host = this.props.users.find((user) => user.key == event.hostKey);
-
+    event.host = this.props.users.find((user) => user.key === event.hostKey);
+    console.log(this.props)
+    console.log(event)
     return (
       <ScrollView>
         <View style={styles.MapPreviewBox}>

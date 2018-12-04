@@ -82,7 +82,7 @@ class App extends React.Component {
       const paintingWorkshopKey = 1;
       const botanicalArtKey = 2;
 
-      const userKey = 0; // Sarah Caballo
+      const userKey = 1; // Sarah Caballo
       const userPic = require('./assets/sarah.jpg');
       this.props.addUser({
           key: userKey,
@@ -94,7 +94,7 @@ class App extends React.Component {
           },
       });
 
-      const zackKey = 1;
+      const zackKey = 2;
       const zackIcon = require('./assets/zack.jpeg');
       this.props.addUser({
         key: zackKey,
@@ -137,7 +137,7 @@ class App extends React.Component {
       });
 
       const biancaIcon = require('./assets/zack.jpeg');
-      const biancaKey = 2;
+      const biancaKey = 3;
       this.props.addUser({
         key: biancaKey,
         name: 'Bianca Yu',
@@ -160,7 +160,7 @@ class App extends React.Component {
       });
 
       const judyIcon = require('./assets/judy.jpg');
-      const judyKey = 3
+      const judyKey = 4
       this.props.addUser({
           key: judyKey,
           name: 'Judy Smith',
@@ -185,7 +185,7 @@ class App extends React.Component {
       this.props.addEvent({
         title: 'Painting Workshop',
         key: paintingWorkshopKey,
-        hostKey: 1,
+        hostKey: zackKey,
         addr1: 'Arizona Garden',
         addr2: 'Stanford, CA 94305',
         date: 'Sunday, December 9th',
@@ -203,7 +203,7 @@ class App extends React.Component {
       this.props.addEvent({
         title: 'Botanical Art Workshop',
         key: botanicalArtKey,
-        hostKey: 3,
+        hostKey: judyKey,
         addr1: '673 Escondido Rd',
         addr2: 'Stanford, CA 94305',
         date: 'Saturday, December 8th',

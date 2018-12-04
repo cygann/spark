@@ -50,7 +50,7 @@ class MessageScreen extends Component {
           messages={messages}
           onSend={(messages) => this.props.addMessage(user, messages[0])}
           user={{
-            _id: 0,
+            _id: 1,
           }}
           renderCustomView={this.renderCustomView}
           renderBubble={this.renderBubble}
