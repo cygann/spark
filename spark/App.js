@@ -27,6 +27,8 @@ import MessageScreen from './components/MessageScreen';
 import EmptyScreen from './components/EmptyScreen';
 import AttendConfirmation from './components/AttendConfirmation';
 import HostConfirmation from './components/HostConfirmation';
+import InviteFriends from './components/InviteFriends';
+import InviteConfirmation from './components/InviteConfirmation';
 
 //App Navigator to move between screens
 const AppNavigator = createStackNavigator(
@@ -39,6 +41,8 @@ const AppNavigator = createStackNavigator(
     Message: {screen: MessageScreen},
     AttendConfirmation: {screen: AttendConfirmation},
     HostConfirmation: {screen: HostConfirmation},
+    InviteFriends: {screen: InviteFriends},
+    InviteConfirmation: {screen: InviteConfirmation},
   },
   {
     initialRouteName: "Home",
@@ -136,7 +140,7 @@ class App extends React.Component {
         }
       });
 
-      const biancaIcon = require('./assets/zack.jpeg');
+      const biancaIcon = require('./assets/Bianca.png');
       const biancaKey = 3;
       this.props.addUser({
         key: biancaKey,

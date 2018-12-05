@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { Overlay } from 'react-native-elements';
 
 import { connect } from 'react-redux';
 import { setAttending } from '../actions/Event';
@@ -95,7 +96,7 @@ class EventPage extends Component {
             <TouchableOpacity
                 activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
-                onPress={() => {}}>
+                onPress={() => nav.navigate('InviteFriends', {event: event})}>
                 <Image style={styles.EventButton} source={require('../assets/invitefriends_button.png')} />
             </TouchableOpacity>
         </View>
