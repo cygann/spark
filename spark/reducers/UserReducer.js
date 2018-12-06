@@ -1,6 +1,7 @@
 import { ADD_USER } from '../actions/Types';
 import { SET_UNREAD } from '../actions/Types';
 import { ADD_MESSAGE } from '../actions/Types';
+import { SET_INVITE_CHECKED } from '../actions/Types';
 
 const initialState = {
   users: [],
@@ -27,6 +28,17 @@ const userReducer = (state = initialState, action) => {
     case ADD_MESSAGE:
       action.user.conversation.messages = [action.message, ...action.user.conversation.messages];
       if (!action.user.key) action.user.key = Math.random();
+      return {
+        users: state.users.map((user) => {
+          if (user.key === action.user.key) {
+            return action.user;
+          } else {
+            return user;
+          }
+        }),
+      };
+    case SET_INVITE_CHECKED:
+      action.user.inviteChecked = action.status;
       return {
         users: state.users.map((user) => {
           if (user.key === action.user.key) {

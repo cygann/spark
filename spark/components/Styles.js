@@ -158,8 +158,8 @@ export const styles = StyleSheet.create({
   SendInviteButton: {
     height: 50,
     width: 340,
-    position: 'absolute',
-    top: 350, 
+    marginLeft: 17,
+    marginTop: 17,
   },
   //InviteTextBox: {
   //  height: 150,
@@ -230,7 +230,7 @@ export const styles = StyleSheet.create({
   //Button Styles
   EventButtonBox: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginLeft: 15,
     marginRight: 15,
   },

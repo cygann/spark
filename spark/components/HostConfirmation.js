@@ -42,7 +42,7 @@ export default class HostConfirmation extends Component {
         <View style={{marginTop: 40}}>
           <TouchableOpacity
             activeOpacity={0.75}
-            onPress={() => this.onPress} // TODO
+            onPress={() => this.props.navigation.navigate('InviteFriends', {event: event})} // TODO
           >
             <Image style={{height: 50, width: 286}} source={require('../assets/InviteFriendsButton.png')} />
           </TouchableOpacity>
