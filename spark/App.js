@@ -27,6 +27,8 @@ import MessageScreen from './components/MessageScreen';
 import EmptyScreen from './components/EmptyScreen';
 import AttendConfirmation from './components/AttendConfirmation';
 import HostConfirmation from './components/HostConfirmation';
+import InviteFriends from './components/InviteFriends';
+import InviteConfirmation from './components/InviteConfirmation';
 
 //App Navigator to move between screens
 const AppNavigator = createStackNavigator(
@@ -39,6 +41,8 @@ const AppNavigator = createStackNavigator(
     Message: {screen: MessageScreen},
     AttendConfirmation: {screen: AttendConfirmation},
     HostConfirmation: {screen: HostConfirmation},
+    InviteFriends: {screen: InviteFriends},
+    InviteConfirmation: {screen: InviteConfirmation},
   },
   {
     initialRouteName: "Home",
@@ -88,6 +92,7 @@ class App extends React.Component {
           key: userKey,
           name: 'Sarah Caballo',
           icon: userPic,
+          inviteChecked: false,
           conversation: {
             unread: false,
             messages: [],
@@ -100,6 +105,7 @@ class App extends React.Component {
         key: zackKey,
         name: 'Zack Cinquini',
         icon: zackIcon,
+        inviteChecked: false,
         conversation: {
           unread: true,
           messages: [
@@ -136,12 +142,13 @@ class App extends React.Component {
         }
       });
 
-      const biancaIcon = require('./assets/zack.jpeg');
+      const biancaIcon = require('./assets/Bianca.png');
       const biancaKey = 3;
       this.props.addUser({
         key: biancaKey,
         name: 'Bianca Yu',
         icon: biancaIcon,
+        inviteChecked: false,
         conversation: {
           unread: true,
           messages: [
@@ -165,6 +172,7 @@ class App extends React.Component {
           key: judyKey,
           name: 'Judy Smith',
           icon: judyIcon,
+          inviteChecked: false,
           conversation: {
               unread: false,
               messages: [
@@ -181,6 +189,32 @@ class App extends React.Component {
               ],
             }
         });
+
+        const anthonyIcon = require('./assets/Anthony.png');
+        const anthonyKey = 5
+        this.props.addUser({
+          key: anthonyKey,
+          name: 'Anthony John',
+          icon: anthonyIcon,
+          inviteChecked: false,
+          conversation: {
+              unread: false,
+              messages: [],
+            }
+        });
+
+      const natalieIcon = require('./assets/Natalie.png');
+      const natalieKey = 6
+      this.props.addUser({
+        key: natalieKey,
+        name: 'Natalie Cygan',
+        icon: natalieIcon,
+        inviteChecked: false,
+        conversation: {
+            unread: false,
+            messages: [],
+          }
+      });
 
       this.props.addEvent({
         title: 'Painting Workshop',

@@ -3,7 +3,7 @@ import {Platform, StyleSheet, Text, View, ScrollView, Image, Button, TouchableOp
 
 import { styles } from './Styles';
 
-export class AttendConfirmation extends Component {
+export default class AttendConfirmation extends Component {
   static navigationOptions = ({navigation}) => {
     return {
       title: 'Attending Event',
@@ -12,7 +12,6 @@ export class AttendConfirmation extends Component {
 
   render() {
     const event = this.props.navigation.getParam('event');
-    event.status = 'attending';
 
     const hoorayText = "Hooray! You're going to";
     const addr1 = "217 Coastal St.";
@@ -26,7 +25,7 @@ export class AttendConfirmation extends Component {
           <Text style={styles.BodyText, {fontSize: 20}}>{hoorayText}</Text>
         </View>
         <View style={{marginTop: 10}}>
-          <Text style={styles.ConfirmEventTitle}>{event.title}</Text> 
+          <Text style={styles.ConfirmEventTitle}>{event.title}</Text>
         </View>
         <View style={{marginTop: 30}}>
           <Image style={{width: 150, height: 150}} source={require('../assets/Checkmark.png')} />

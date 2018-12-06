@@ -147,6 +147,29 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff', //light gray
   },
+
+  // Invite Friends Styles
+  Checkbox: {
+    height: 35,
+    width: 35,
+    marginTop: 50,
+    marginRight: 10,
+  },
+  SendInviteButton: {
+    height: 50,
+    width: 340,
+    marginLeft: 17,
+    marginTop: 17,
+  },
+  //InviteTextBox: {
+  //  height: 150,
+  //  width: 340,
+  //  top: 150,
+  //  borderRadius: 15,
+  //  borderWidth: 1,
+  //  borderColor: '#E5E5E5',
+  //},
+
 //General Styles
   MapPreviewBox: {
     height: 150,
@@ -207,7 +230,7 @@ export const styles = StyleSheet.create({
   //Button Styles
   EventButtonBox: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginLeft: 15,
     marginRight: 15,
   },

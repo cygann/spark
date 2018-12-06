@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { Overlay } from 'react-native-elements';
 
 import { connect } from 'react-redux';
 import { setAttending } from '../actions/Event';
@@ -19,8 +20,6 @@ class EventPage extends Component {
     const nav = this.props.navigation;
     const event = nav.getParam('event', {});
     event.host = this.props.users.find((user) => user.key === event.hostKey);
-    console.log(this.props)
-    console.log(event)
     return (
       <ScrollView>
         <View style={styles.MapPreviewBox}>
@@ -70,7 +69,7 @@ class EventPage extends Component {
                   <Image source={require('../assets/tyler.jpg')} style={styles.UserProfileImageSmall} />
             </View>
             <View>
-                <Text style={styles.BodyText, textDecorationLine='underline'}> + 5 more...</Text>
+                {/*<Text style={styles.BodyText, textDecorationLine='underline'}> + 5 more...</Text>*/}
             </View>
           </View>
         <View>
@@ -79,7 +78,9 @@ class EventPage extends Component {
         <View style={styles.EventAbout}>
           <Text style={styles.BodyText}>{event.about}</Text>
         </View>
-        <View style={styles.EventButtonBox}>
+        {event.status!=='hosting'
+        ?
+          <View style={styles.EventButtonBox}>
             <TouchableOpacity
                 activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
@@ -90,15 +91,26 @@ class EventPage extends Component {
 
                 <Image style={styles.EventButton} source={event.status === 'attending' ?
                     require('../assets/unattend_button.png') : require('../assets/attend_button.png') } />
-                {/*<Image style={styles.EventButton} source={require('../assets/attend_button.png')} />*/}
             </TouchableOpacity>
+            <View style={{width:10}}/>
             <TouchableOpacity
                 activeOpacity={0.75}
                 buttonStyle={styles.AttendButton}
-                onPress={() => {}}>
+                onPress={() => nav.navigate('InviteFriends', {event: event})}>
                 <Image style={styles.EventButton} source={require('../assets/invitefriends_button.png')} />
             </TouchableOpacity>
-        </View>
+          </View>
+        :
+          <View style={styles.EventButtonBox}>
+            <TouchableOpacity
+                activeOpacity={0.75}
+                buttonStyle={styles.AttendButton}
+                onPress={() => nav.navigate('InviteFriends', {event: event})}>
+                <Image style={styles.EventButton} source={require('../assets/invitefriends_button.png')} />
+            </TouchableOpacity>
+          </View>
+      }
+
       </ScrollView>
 
     );

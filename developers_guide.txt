@@ -19,6 +19,8 @@ install the following packaged with npm:
     npm install --save react-native-maps
     npm install --save moment
     npm install --save react-native-gifted-chat
+    npm install --save react-native-elements@beta
+    npm install --save react-native-vector-icons
 
 Then link all dependencies:
     react-native link
