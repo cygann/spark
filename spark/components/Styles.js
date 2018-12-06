@@ -183,6 +183,7 @@ export const styles = StyleSheet.create({
     height: 30,
     borderRadius: 15,
     width: 30,
+    marginRight: 8,
   },
   UserProfileBox: {
     flexDirection: 'row',
@@ -202,10 +203,9 @@ export const styles = StyleSheet.create({
   EventAttendeesBox: {
     top: 0,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     height: 40,
-    width: 175,
+    width: 300,
   },
   EventAbout: {
     marginLeft: 15,
@@ -259,5 +259,5 @@ export const styles = StyleSheet.create({
       marginLeft: 25,
       marginRight: 25,
       marginTop: 15,
-  }
+  },
 });

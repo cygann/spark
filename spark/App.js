@@ -30,7 +30,7 @@ import HostConfirmation from './components/HostConfirmation';
 import InviteFriends from './components/InviteFriends';
 import InviteConfirmation from './components/InviteConfirmation';
 
-//App Navigator to move between screens
+// App Navigator to move between screens
 const AppNavigator = createStackNavigator(
   {
     Home: {screen: HomeScreen},
@@ -85,6 +85,9 @@ class App extends React.Component {
 
       const paintingWorkshopKey = 1;
       const botanicalArtKey = 2;
+      const contactImprovKey = 3;
+      const jamSessionKey = 4;
+      const appleKidsHourKey = 5;
 
       const userKey = 1; // Sarah Caballo
       const userPic = require('./assets/sarah.jpg');
@@ -231,7 +234,43 @@ class App extends React.Component {
         about: 'Come join us for an evening of casual painting! I like to host these weekly on Tuesday nights. Each week, we have a different painting theme, where we all paint the same landscape, Bob Ross style almost! All materials are provided, so don’t worry about having to bring anything.',
         status: 'standard',
         capacity: 20,
-        attending: 8,
+        numAttending: 5,
+      });
+
+      this.props.addEvent({
+        title: 'Contact Improv Intro Class',
+        key: contactImprovKey,
+        hostKey: natalieKey,
+        addr1: 'Roble Arts Gym',
+        addr2: 'Stanford, CA 94305',
+        date: 'Sunday, December 9th',
+        time: '9:30pm - 10:30pm',
+        coordinates: {
+          latitude: 37.426408,
+          longitude:  -122.174904
+        },
+        about: 'Contact improv is a form of spontaneous dance without music, usually done in groups. Wear comfortable clothing and come learn the basics!',
+        status: 'standard',
+        capacity: 12,
+        numAttending: 6,
+      });
+
+      this.props.addEvent({
+        title: 'Jam Session',
+        key: jamSessionKey,
+        hostKey: biancaKey,
+        addr1: 'Crothers Music Room',
+        addr2: 'Stanford, CA 94305',
+        date: 'Sunday, December 9th',
+        time: '9:00pm - 11:00pm',
+        coordinates: {
+          latitude: 37.426050,
+          longitude:  -122.165634
+        },
+        about: "Play an instrument or sing? Have a song in mind? Want to learn? Let's chill out and play music together. Bring your own instruments if you can!",
+        status: 'standard',
+        capacity: 5,
+        numAttending: 1,
       });
 
       this.props.addEvent({
@@ -249,7 +288,25 @@ class App extends React.Component {
         about: 'Check out this amazing opportunity to learn about the world of Botanical Art! This is a way to connect with the natural world while creating beautiful watercolor paintings of plants. There is an emphasis on botanical accuracy and detail with botanical art, which we will learn how to approach!',
         status: 'standard',
         capacity: 15,
-        attending: 8,
+        numAttending: 3,
+      });
+
+      this.props.addEvent({
+        title: 'Apple Kids Hour',
+        key: appleKidsHourKey,
+        hostKey: anthonyKey,
+        addr1: '340 University Ave',
+        addr2: 'Palo Alto, CA 94301',
+        date: 'Saturday, December 8th',
+        time: '1:00pm - 2:00pm',
+        coordinates: {
+          latitude: 37.446451,
+          longitude: -122.160731
+        },
+        about: 'An adventure awaits each week as kids create fun, hands-on projects. Designed to spark imagination and creativity, kids will explore coding, storytelling, illustration, movie making, music, and more.',
+        status: 'standard',
+        capacity: 50,
+        numAttending: 8,
       });
     }
     return <AppContainer/>;

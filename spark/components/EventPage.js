@@ -4,6 +4,7 @@ import { Overlay } from 'react-native-elements';
 
 import { connect } from 'react-redux';
 import { setAttending } from '../actions/Event';
+import { setNumAttending } from '../actions/Event';
 
 import Map from './Map';
 import { styles } from './Styles';
@@ -16,10 +17,37 @@ class EventPage extends Component {
     };
   }
 
+
   render(){
     const nav = this.props.navigation;
     const event = nav.getParam('event', {});
     event.host = this.props.users.find((user) => user.key === event.hostKey);
+    const attendeeImages = [
+      require('../assets/sarah.jpg'),
+      require('../assets/landay.jpg'),
+      require('../assets/minhan.jpeg'),
+      require('../assets/ge.jpg'),
+      require('../assets/mtl.jpg'),
+      require('../assets/tyler.jpg'),
+      require('../assets/Bianca.png'),
+      require('../assets/Anthony.png'),
+      require('../assets/Natalie.png'),
+      require('../assets/zack.jpeg'),
+    ]
+
+    let i = 0;
+    let currAttending = 0
+    let finalAttendeeImages = []
+    while (currAttending < event.numAttending) {
+      if (i % attendeeImages.length === 0 && event.status !== 'attending') {
+        i++;
+        continue;
+      }
+      finalAttendeeImages.push({image:attendeeImages[i % attendeeImages.length], key:i});
+      i++;
+      currAttending++;
+    }
+
     return (
       <ScrollView>
         <View style={styles.MapPreviewBox}>
@@ -59,14 +87,12 @@ class EventPage extends Component {
         </View>
           <View style={styles.SpotsBox}>
             <View>
-                  <Text style={styles.BodyText}>{event.attending}/{event.capacity} Spots Filled</Text>
+                  <Text style={styles.BodyText}>{event.numAttending}/{event.capacity} Spots Filled</Text>
             </View>
             <View style={styles.EventAttendeesBox}>
-                  <Image source={require('../assets/landay.jpg')} style={styles.UserProfileImageSmall} />
-                  <Image source={require('../assets/minhan.jpeg')} style={styles.UserProfileImageSmall} />
-                  <Image source={require('../assets/ge.jpg')} style={styles.UserProfileImageSmall} />
-                  <Image source={require('../assets/mtl.jpg')} style={styles.UserProfileImageSmall} />
-                  <Image source={require('../assets/tyler.jpg')} style={styles.UserProfileImageSmall} />
+              {finalAttendeeImages.map(image => (
+                <Image key={image.key} source={image.image} style={styles.UserProfileImageSmall} />
+              ))}
             </View>
             <View>
                 {/*<Text style={styles.BodyText, textDecorationLine='underline'}> + 5 more...</Text>*/}
@@ -86,8 +112,13 @@ class EventPage extends Component {
                 buttonStyle={styles.AttendButton}
                 onPress={() => {
                   this.props.setAttending(event, event.status === 'attending' ? 'standard' : 'attending');
-                  if (event.status === 'attending') nav.navigate('AttendConfirmation', {event: event})}
-                }>
+                  if (event.status === 'attending') {
+                    this.props.setNumAttending(event, event.numAttending + 1);
+                    nav.navigate('AttendConfirmation', {event: event});
+                  } else {
+                    this.props.setNumAttending(event, event.numAttending - 1);
+                  }
+                }}>
 
                 <Image style={styles.EventButton} source={event.status === 'attending' ?
                     require('../assets/unattend_button.png') : require('../assets/attend_button.png') } />
@@ -128,7 +159,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setAttending: (event, status) => {
       dispatch(setAttending(event, status))
-    }
+    },
+    setNumAttending: (event, number) => {
+      dispatch(setNumAttending(event, number))
+    },
   }
 }
 
