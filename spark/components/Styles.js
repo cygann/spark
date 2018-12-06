@@ -259,5 +259,5 @@ export const styles = StyleSheet.create({
       marginLeft: 25,
       marginRight: 25,
       marginTop: 15,
-  }
+  },
 });

@@ -30,7 +30,7 @@ import HostConfirmation from './components/HostConfirmation';
 import InviteFriends from './components/InviteFriends';
 import InviteConfirmation from './components/InviteConfirmation';
 
-//App Navigator to move between screens
+// App Navigator to move between screens
 const AppNavigator = createStackNavigator(
   {
     Home: {screen: HomeScreen},
