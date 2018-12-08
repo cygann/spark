@@ -30,6 +30,8 @@ import HostConfirmation from './components/HostConfirmation';
 import InviteFriends from './components/InviteFriends';
 import InviteConfirmation from './components/InviteConfirmation';
 
+console.disableYellowBox = true;
+
 // App Navigator to move between screens
 const AppNavigator = createStackNavigator(
   {
