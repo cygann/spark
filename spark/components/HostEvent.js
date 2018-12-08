@@ -88,7 +88,8 @@ const formOptions = {
             error: 'Please enter a date for your event.',
             mode: 'date',
             config: {
-                format:(date) => moment(date).format('dddd, MMMM Do YYYY')
+                format:(date) => moment(date).format('dddd, MMMM Do YYYY'),
+                defaultValueText: 'Tap to select a date',
             }
         },
         startTime: {
@@ -96,7 +97,8 @@ const formOptions = {
             error: 'Please enter a starting time for your event.',
             mode: 'time',
             config: {
-                format:(date) => moment(date).format('h:mm a')
+                format:(date) => moment(date).format('h:mm a'),
+                defaultValueText: 'Tap to select a time',
             }
         },
         endTime: {
@@ -104,7 +106,8 @@ const formOptions = {
             error: 'Please enter an ending time for your event.',
             mode: 'time',
             config: {
-                format:(date) => moment(date).format('h:mm a')
+                format:(date) => moment(date).format('h:mm a'),
+                defaultValueText: 'Tap to select a time',
             }
         },
         addr1: {
